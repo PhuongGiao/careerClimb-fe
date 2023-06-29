@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3003/api";
+const baseUrl = "https://careerclimb-be.onrender.com/api";
 
 export class BaseService {
   put = (url, model) => {

@@ -1,0 +1,20 @@
+@import "../../styles/var";
+.searchFilter {
+  width: 100%;
+  .button {
+    width: 100%;
+    padding: 0 10px;
+    border: 0;
+    box-shadow: none;
+    span {
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .button {
+    .span {
+      display: none !important;
+    }
+  }
+}

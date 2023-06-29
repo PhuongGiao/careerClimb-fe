@@ -1,0 +1,11 @@
+@import "../../styles/var";
+.userInformation {
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

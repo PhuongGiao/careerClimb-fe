@@ -1,0 +1,211 @@
+import React, { useState } from "react";
+import styles from "./appliedCard.module.scss";
+import { Button, Col, Modal, Row, Tag } from "antd";
+import { useRouter } from "next/router";
+import accImg from "./../../../public/accImg.jpeg";
+// import error from "../../../public/error.png";
+import happy from "../../../public/happy.jpeg";
+import unhappy from "../../../public/unhappy.jpeg";
+
+const AppliedCard = ({ value }) => {
+  const applications = value?.Applications;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [resultOpen, setResultOpen] = useState(false);
+  const [cv, setCv] = useState();
+  const [result, setResult] = useState();
+  const router = useRouter();
+  console.log(applications);
+  const showModal = (val) => {
+    setIsModalOpen(true);
+    setCv(val.CV);
+  };
+  const showResult = (val) => {
+    setResultOpen(true);
+    setResult(val);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleOkResult = () => {
+    setResultOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancelResult = () => {
+    setResultOpen(false);
+  };
+  const statusSwitch = (param) => {
+    switch (param?.status) {
+      case 2:
+        // return "Đã xem";
+        return (
+          <div className={styles.button}>
+            <div style={{ background: "blue" }} className={styles.circle}></div>
+            <p className={styles.highlightBut} disabled>
+              Đã xem
+            </p>
+          </div>
+        );
+      case 3:
+      case 4:
+        // return "Đã có kết quả";
+        return (
+          <div className={styles.button}>
+            {/* <div
+              style={{ background: "green" }}
+              className={styles.circle}
+            ></div> */}
+            <Button
+              onClick={() => showResult(param)}
+              className={styles.highlightBut}
+              type="primary"
+              style={{ color: "#ffffff", padding: "0 20px" }}
+            >
+              Đã có kết quả
+            </Button>
+          </div>
+        );
+      default:
+        // return "Đang đợi";
+        return (
+          <div className={styles.button}>
+            <div style={{ background: "red" }} className={styles.circle}></div>
+            <p className={styles.highlightBut} disabled>
+              Đang đợi
+            </p>
+          </div>
+        );
+    }
+  };
+  return (
+    <>
+      {/* <Col key={value.id} span={12}> */}
+      {applications !== null &&
+        applications?.map((val) => (
+          <Col key={value.id} span={8}>
+            <div className={styles.card}>
+              <div
+                className={styles.image}
+                onClick={() => router.push(`jobs-list/${val?.id}`)}
+              >
+                <img
+                  src={val?.Job?.User?.employerDetail?.image || accImg.src}
+                  alt=""
+                />
+              </div>
+              <div className={styles.content}>
+                <h4 onClick={() => router.push(`jobs-list/${value.id}`)}>
+                  {val?.Job?.name}
+                </h4>
+                <p onClick={() => router.push(`top-employers/${value.id}`)}>
+                  {val?.Job?.User?.employerDetail?.name}
+                </p>
+                <p onClick={() => showModal(val)}>Mẫu CV: {val?.CV?.cvName}</p>
+                {statusSwitch(val)}
+                {/* <div className={styles.button}>
+                <div
+                  style={{ background: "red" }}
+                  className={styles.circle}
+                ></div>
+                <p className={styles.highlightBut} disabled>
+                  {statusSwitch(value?.JobCv?.status)}
+                </p>
+              </div> */}
+              </div>
+            </div>
+          </Col>
+        ))}
+      {/* </Col> */}
+      <Modal
+        title="HỒ SƠ CỦA BẠN"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={[]}
+      >
+        <div style={{ lineHeight: 2 }}>
+          <div className={styles.info}>
+            <b className={styles.title}>Tên ứng viên</b> <p>{cv?.name}</p>
+          </div>
+          <div className={styles.info}>
+            <b className={styles.title}>Tên CV</b> <p>{cv?.cvName}</p>
+          </div>
+          <div className={styles.info}>
+            <b className={styles.title}>Email</b> <p>{cv?.email}</p>
+          </div>
+          <div className={styles.info}>
+            <b className={styles.title}>Số điện thoại </b>
+            <p>{cv?.phone}</p>
+          </div>
+          <div className={styles.info}>
+            <b className={styles.title}>Lời giới thiệu</b>
+            <p>{cv?.introduction || "Không có lời giới thiệu"}</p>
+          </div>
+          <div className={styles.info}>
+            <b className={styles.title}>CV của ứng viên </b>
+            <Button
+              type="primary"
+              className={styles.button}
+              target="_blank"
+              href={cv?.cv}
+            >
+              Xem CV
+            </Button>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        open={resultOpen}
+        onOk={handleOkResult}
+        onCancel={handleCancelResult}
+        footer={[]}
+      >
+        {result?.status === 3 ? (
+          <div className={styles.notification}>
+            {/* <img src={success.src} /> */}
+            <div className={styles.imgNoti}>
+              <img src={happy.src} alt="" />
+            </div>
+            <h4 style={{ color: "green" }}>
+              Chúc mừng bạn đã trúng tuyển !!!{" "}
+            </h4>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                flexDirection: "column",
+              }}
+            >
+              <p>Thông tin của người hướng dẫn phỏng vấn</p>
+              <p>
+                <b>Họ và tên:</b> {result?.intructorName}
+              </p>
+              <p>
+                <b>Email:</b> {result?.intructorEmail}
+              </p>
+              <p>
+                <b>Số điện thoại:</b> {result?.intructorPhone}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.notification}>
+            <div className={styles.imgNoti}>
+              <img src={unhappy.src} alt="" />
+            </div>
+            <h4 style={{ color: "red" }}>Uh Oh</h4>
+            <p>Bạn không được ứng tuyển công việc này...</p>
+            <div>
+              <Button type="primary">Khám phá công việc mới</Button>
+            </div>
+          </div>
+        )}
+        {}
+      </Modal>
+    </>
+    // <></>
+  );
+};
+
+export default AppliedCard;

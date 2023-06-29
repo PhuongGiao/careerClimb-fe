@@ -1,0 +1,13 @@
+@import "../../styles/var";
+.appliedEmployers {
+  padding: 0 30px;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    .main {
+      .list {
+        margin: 30px 0 !important;
+      }
+    }
+  }
+}

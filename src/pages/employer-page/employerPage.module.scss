@@ -1,0 +1,38 @@
+@import "../../styles/var";
+.login {
+  .container {
+    height: 100vh;
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    .main {
+      //   border: 1px solid $secondText;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+        rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+      border-radius: 10px;
+      padding: 50px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      background: #f1f1f1;
+      .logo {
+        width: 70%;
+        img {
+          width: 100%;
+        }
+      }
+      .submitButton {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .main {
+    height: 100%;
+    width: 100%;
+  }
+}

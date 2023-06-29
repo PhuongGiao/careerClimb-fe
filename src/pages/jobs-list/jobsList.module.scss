@@ -1,0 +1,92 @@
+@import "../../styles/var";
+.jobsList {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    .main {
+      display: block;
+      .search {
+        width: 100%;
+        margin: 25px 0;
+        h1 {
+          display: none !important;
+        }
+        .keys {
+          display: flex;
+          .eachKey {
+            display: flex;
+            justify-content: center;
+            border: 1px solid $primary;
+            border-radius: 20px;
+            padding: 5px 20px;
+            margin-right: 20px;
+            color: $primary;
+            .highLight {
+              color: red;
+            }
+          }
+        }
+      }
+      .searchRespon {
+        display: none;
+      }
+      .content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        // margin: 30px 0;
+        .leftSearch {
+          width: 28%;
+          position: sticky;
+          top: 0;
+          height: fit-content;
+        }
+        .list {
+          width: 70%;
+          .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .jobsList {
+    .main {
+      .search {
+        display: none !important;
+      }
+      .searchRespon {
+        display: flex !important;
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+
+        .leftSearch {
+          display: none;
+        }
+        .list {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 992px) {
+  .jobsList {
+    margin: 20px 25px;
+    .main {
+      .search {
+        .keys {
+          display: none !important;
+        }
+      }
+    }
+  }
+}

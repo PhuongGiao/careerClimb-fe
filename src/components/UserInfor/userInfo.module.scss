@@ -1,0 +1,9 @@
+@import "../../styles/var";
+.submitButton {
+  width: fit-content;
+  background: green;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+}

@@ -1,0 +1,64 @@
+@import "../../styles/var";
+.benefits {
+  position: relative;
+  background: #f2f2f2;
+  padding: 25px 0;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    .main {
+      display: flex;
+
+      .intro {
+        width: 40%;
+        padding-right: 80px;
+        line-height: 2;
+        .line {
+          display: flex;
+          min-width: 6%;
+          top: 7%;
+          width: 6%;
+          background: #572c0e;
+          height: 8px;
+          position: absolute;
+          left: 0;
+          margin: 0;
+        }
+      }
+      .content {
+        width: 60%;
+        color: $primary;
+        line-height: 2;
+        .icon {
+          font-size: 50px;
+        }
+        .mainText {
+          font-weight: 700;
+          font-size: 25px;
+        }
+        .text {
+          color: #a9a9a9;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+    .intro {
+      width: 100% !important;
+      padding-right: 0 !important;
+      .line {
+        display: none !important;
+      }
+    }
+    .content {
+      width: 100% !important;
+      margin: 50px 0;
+      text-align: center;
+    }
+  }
+}

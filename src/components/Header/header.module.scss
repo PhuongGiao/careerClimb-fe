@@ -1,0 +1,92 @@
+@import "../../styles/var";
+.header {
+  padding: 15px 0;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    .headerRow {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-flow: row;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      .logo {
+      }
+      .menu {
+        font-weight: 600;
+        .menuItem {
+          color: $primary !important;
+          border-bottom: none !important;
+        }
+        .ant-menu-overflow.ant-menu.ant-menu-root.ant-menu-horizontal.ant-menu-light {
+          border-bottom: none !important;
+        }
+      }
+      .div {
+        display: flex;
+        align-items: center;
+        .user {
+          width: fit-content;
+          border-radius: 30px;
+          color: $primary;
+          border: 1px solid $primary;
+          display: flex;
+          align-items: center;
+          font-weight: 600;
+          justify-content: space-evenly;
+          padding: 5px 10px;
+          .avaImg {
+            display: flex;
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            img {
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+            }
+          }
+          .name {
+            h4 {
+              font-size: 16px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+              color: $primary;
+            }
+          }
+        }
+        .account {
+          display: flex;
+          align-items: center;
+          .button {
+            border: none;
+            box-shadow: none;
+            color: $primary;
+          }
+          .highlightButton {
+            font-weight: 600;
+            border-radius: 30px;
+            color: $primary;
+            border: 1px solid $primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .highlightButton {
+    display: none;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .header {
+    padding: 20px 25px;
+  }
+}

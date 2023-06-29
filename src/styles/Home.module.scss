@@ -1,0 +1,31 @@
+@import "./var";
+.main {
+  section {
+    margin: 25px 0;
+    padding: 50px 30px;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      .title {
+        text-transform: uppercase;
+        color: $primary;
+        font-size: 25px;
+        margin: 25px 0;
+      }
+    }
+  }
+  section:first-child {
+    margin: 0;
+  }
+  section:last-child {
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .main {
+    section {
+      padding: 100px 30px;
+    }
+  }
+}

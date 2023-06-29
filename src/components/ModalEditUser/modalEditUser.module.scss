@@ -1,0 +1,15 @@
+.form {
+  label {
+    width: 120px;
+  }
+  .formImage {
+    display: flex;
+    justify-content: space-between;
+    .oldImg {
+      width: 100px;
+    }
+    .newImg {
+      width: 90px;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@import "../../styles/var";
+.card {
+  border: 1px solid $primary;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 25px 0;
+  .title {
+    display: flex;
+    align-items: center;
+    text-decoration: underline;
+    margin: 10px 0;
+    .button {
+      margin: 0 10px;
+      border: 1px solid $primary;
+      padding: 5px 10px !important;
+      color: $primary;
+    }
+  }
+  .content {
+    display: flex;
+    width: 100%;
+    h4 {
+      width: 15%;
+      font-weight: 700;
+      font-size: 16px;
+      color: $primary;
+      text-transform: uppercase;
+    }
+    p {
+      width: 85%;
+      color: grey;
+      word-break: break-all;
+    }
+    a {
+      width: 85%;
+      color: grey;
+      word-break: break-all;
+    }
+  }
+}

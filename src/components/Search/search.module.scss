@@ -1,0 +1,56 @@
+@import "../../styles/var";
+
+.search {
+  padding: 0 30px !important;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    .main {
+      .form {
+        width: 100%;
+        display: flex;
+        .input {
+          color: $primary;
+          border: 0;
+          .borderStyle {
+            border-bottom: 1px solid $primary;
+            color: $primary;
+
+            .ant-select-selection-placeholder {
+              color: red;
+            }
+          }
+        }
+        .button {
+          width: 100%;
+          border-radius: 10px;
+          border: 1px solid $primary;
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .search {
+    padding: 0 30px !important;
+    .button {
+      display: flex !important;
+      justify-content: center !important;
+      width: fit-content !important;
+      padding: 10px 50px;
+    }
+  }
+}
+@media only screen and (max-width: 576px) {
+  .search {
+    padding: 0 30px !important;
+    .button {
+      display: flex !important;
+      justify-content: center !important;
+      width: fit-content !important;
+      padding: 10px 50px;
+    }
+  }
+}

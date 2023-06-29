@@ -1,0 +1,24 @@
+@import "../../styles/var";
+.cardCategory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid $primary;
+  padding: 15px;
+  line-height: 2;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  .icon {
+    font-size: 50px;
+    color: $primary;
+  }
+  .content {
+    .title {
+      color: $primary;
+    }
+    .amount {
+      color: $secondText;
+    }
+  }
+}

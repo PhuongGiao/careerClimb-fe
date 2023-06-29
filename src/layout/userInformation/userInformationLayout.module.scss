@@ -1,0 +1,17 @@
+@import "../../styles/var";
+.userInformationLayout {
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .main {
+      background: #fff;
+      border-radius: 15px;
+      align-items: center;
+      padding: 30px;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@import "../../styles/var";
+.categoryDetail {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    .category {
+      .title {
+        padding: 20px 0;
+      }
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

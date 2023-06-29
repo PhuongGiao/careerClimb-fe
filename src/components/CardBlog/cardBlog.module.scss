@@ -1,0 +1,45 @@
+@import "../../styles/var";
+
+.item {
+  break-inside: avoid;
+  .content {
+    padding: 15px;
+    .img {
+      width: 100%;
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    .text {
+      .titleText {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .intro {
+        margin: 10px 0;
+        p {
+          font-size: 12px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          color: $primary;
+        }
+      }
+    }
+    .button {
+      display: flex;
+      font-size: 12px;
+      span {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .item:first-child .content {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,47 @@
+@import "../../styles/var";
+.mycv {
+  margin: 0 30px;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    .main {
+      .title {
+        text-transform: uppercase;
+        color: $primary;
+        font-size: 20px;
+        margin: 15px 0;
+      }
+      .boxCreate {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        border: 2px solid #e6e6e6;
+        border-radius: 10px;
+        background: #f6f6f6;
+        margin: 30px 0;
+        .icon {
+          font-size: 50px;
+          color: #e6e6e6;
+          padding: 50px;
+        }
+      }
+      .form {
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 40px;
+        margin: 20px 0;
+        .button {
+          text-transform: uppercase;
+          background: none;
+          color: $primary;
+          box-shadow: none;
+          border: 1px solid $primary;
+          border-radius: 20px;
+          padding: 10px 20px;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

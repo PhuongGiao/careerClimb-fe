@@ -1,0 +1,136 @@
+@import "https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap";
+
+* {
+  font-family: "Roboto", sans-serif !important;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+ol,
+ul {
+  list-style: none;
+}
+
+/* @font-face {
+  font-family: "GochiHand";
+  src: url(/fonts/GochiHand-Regular.ttf);
+} */
+
+/* style menu  */
+/* .ant-menu-submenu-title:hover {
+  background-color: transparent !important;
+  color: #572c0e;
+} */
+.ant-menu-item-selected {
+  background-color: transparent !important;
+  color: #a7a7a7 !important;
+}
+
+.ant-menu-item:not(.ant-menu-item-selected):hover {
+  /* background-color: #f5f5f5 !important; */
+  color: #572c0e !important;
+}
+.ant-checkbox-wrapper {
+  margin-right: 10px;
+}
+.ant-menu-light {
+  color: #572c0e;
+}
+/* .ant-menu-item:hover {
+  color: #572c0e !important;
+} */
+.ant-menu-submenu-title:hover {
+  color: #572c0e !important;
+}
+/*  */
+
+.ant-btn-default {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* button */
+.ant-btn {
+  border: 0;
+  /* width: fit; */
+  padding: 0;
+  box-shadow: none;
+  padding: 0 20px;
+}
+.ant-btn:hover {
+  border: 0;
+}
+
+/* pagination */
+.ant-table-pagination-right {
+  justify-content: center !important;
+}
+
+/* menu home */
+.ant-menu-item-selected::after {
+  border-bottom-color: #bbbbbb !important;
+}
+:where(.css-dev-only-do-not-override-zsf9wb).ant-input-group
+  .ant-input-group-addon {
+  height: 100%;
+  border-radius: 0 20px 20px 0;
+  /* background: red; */
+  width: 8%;
+  border: 1px solid #d9d9d9 !important;
+}
+
+/* label */
+:where(.css-dev-only-do-not-override-zsf9wb).ant-form-item
+  .ant-form-item-label
+  > label {
+  width: 150px;
+  word-wrap: break-word;
+}
+
+/* remove : */
+.ant-form-item label:after {
+  content: none !important;
+}
+
+/* input home */
+:where(.css-dev-only-do-not-override-zsf9wb).ant-input-lg {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #572c0e;
+  border-radius: 0;
+}
+
+:where(.css-dev-only-do-not-override-zsf9wb).ant-input:focus,
+:where(.css-dev-only-do-not-override-zsf9wb).ant-input-focused {
+  border-color: none;
+  box-shadow: none;
+  border-inline-end-width: 0;
+  outline: 0;
+}
+
+/* step button */
+:where(.css-dev-only-do-not-override-zsf9wb).ant-steps
+  .ant-steps-item-finish
+  .ant-steps-item-icon {
+  background-color: #572c0e;
+}
+:where(.css-dev-only-do-not-override-zsf9wb).ant-steps
+  .ant-steps-item-finish
+  .ant-steps-item-icon
+  > .ant-steps-icon {
+  color: #fff;
+}
+
+/* flex upload cv */
+:where(.css-dev-only-do-not-override-zsf9wb).ant-upload-wrapper
+  .ant-upload-select {
+  display: block;
+}
+:where(
+    .css-dev-only-do-not-override-zsf9wb
+  ).ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload-list.ant-upload-list-picture-card
+  .ant-upload-list-item-container {
+  display: flex;
+}

@@ -1,0 +1,29 @@
+@import "../../styles/var";
+
+.category {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    .main {
+      .title {
+        text-transform: uppercase;
+        font-size: 25px;
+        margin: 25px 0;
+        color: $primary;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .pagination {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .pagination {
+    display: none;
+  }
+}

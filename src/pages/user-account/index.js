@@ -18,7 +18,7 @@ const UserAccount = () => {
     {
       key: "1",
       label: `Thông tin chi tiết`,
-      children: [
+      children: user && (
         <Form
           form={form}
           key="form"
@@ -110,8 +110,8 @@ const UserAccount = () => {
           >
             <Input placeholder="" disabled />
           </Form.Item>
-        </Form>,
-      ],
+        </Form>
+      ),
     },
     {
       key: "2",

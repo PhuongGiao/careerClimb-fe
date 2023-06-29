@@ -5,8 +5,12 @@ import ImageUploadForm from "../FormImage/FormImage";
 import { SwapRightOutlined } from "@ant-design/icons";
 import { userService } from "../../../services/userServices";
 import { openNotification } from "../Notification";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { getCurrentUser } from "@/store/action/userAction";
 
 const ModalEditUser = ({ user, isOpenAcc, setisOpenAcc }) => {
+  const router = useRouter();
   const [form] = Form.useForm();
   const [imageUrl, setImageUrl] = useState();
   const handleOk = () => {
@@ -20,9 +24,11 @@ const ModalEditUser = ({ user, isOpenAcc, setisOpenAcc }) => {
     try {
       await userService.update(user.id, { ...values, image: imageUrl });
       openNotification("success", "Bạn đã cập nhập thông tin !!!");
+      router.reload();
     } catch (error) {
       openNotification("error", "Something went wrong...");
     }
+
     form.resetFields();
     setisOpenAcc(false);
   };

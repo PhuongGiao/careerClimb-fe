@@ -13,36 +13,32 @@ import { useRouter } from "next/router";
 import accImg from "./../../../public/accImg.jpeg";
 
 const SmCardCom = ({ data }) => {
+  console.log(data);
   const router = useRouter();
   return (
     <div className={styles.smCardCom}>
       <div className={styles.cardCompany}>
         <div className={styles.infoImage}>
           <div className={styles.logo}>
-            <img
-              src={
-                data?.image || data?.User?.employerDetail?.image || accImg.src
-              }
-              alt=""
-            />
+            <img src={data?.employerDetail?.image || accImg.src} alt="" />
           </div>
         </div>
         <div className={styles.info}>
           <h4 style={{ fontSize: "14px" }}>
-            {data?.benefits ? data?.User?.employerDetail?.name : data?.name}
+            {data?.User?.employerDetail?.name || data?.employerDetail?.name}
           </h4>
         </div>
       </div>
       <div className={styles.location}>
         <p>
           <HomeOutlined style={{ fontSize: "24px", padding: "0 10px" }} />
-          {data?.address || data?.User?.employerDetail?.address}
+          {data?.User?.employerDetail?.address || data?.employerDetail?.address}
         </p>
       </div>
       <div className={styles.location}>
         <p>
           <MailOutlined style={{ fontSize: "24px", padding: "0 10px" }} />
-          {data?.User?.email}
+          {data?.User?.email || data?.email}
         </p>
       </div>
       {/* <div className={styles.socialMedia}>

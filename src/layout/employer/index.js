@@ -1,7 +1,9 @@
 import {
   BellOutlined,
   MailOutlined,
+  PictureOutlined,
   SettingOutlined,
+  ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import {
@@ -40,7 +42,7 @@ const EmployerLayout = ({ children }) => {
     {
       key: "/employer-page",
       label: "Việc làm",
-      icon: <MailOutlined />,
+      icon: <ShoppingOutlined />,
       // children: [
       //   {
       //     key: "/employer-page",
@@ -48,20 +50,20 @@ const EmployerLayout = ({ children }) => {
       //   },
       // ],
     },
-    {
-      key: "/employer-page/candidate-list",
-      label: "Danh sách ứng viên",
-      icon: <MailOutlined />,
-    },
+    // {
+    //   key: "/employer-page/candidate-list",
+    //   label: "Danh sách ứng viên",
+    //   icon: <MailOutlined />,
+    // },
     {
       key: "/employer-page/applied-list",
       label: "Danh sách ứng tuyển",
-      icon: <MailOutlined />,
+      icon: <UserOutlined />,
     },
     {
       key: "/employer-page/blog-list",
       label: "Danh sách bài viết",
-      icon: <MailOutlined />,
+      icon: <PictureOutlined />,
     },
   ];
   const content = (
@@ -159,7 +161,7 @@ const EmployerLayout = ({ children }) => {
             textAlign: "center",
           }}
         >
-          Ant Design ©2023 Created by Ant UED
+          ©2023 Created by Giao Bui
         </Footer>
       </Layout>
     </Layout>

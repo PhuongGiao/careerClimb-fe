@@ -16,6 +16,12 @@ export class UserService extends BaseService {
   updateImage = (id, data) => {
     return this.patch(`/user/image/${id}`, data);
   };
+  getAll = () => {
+    return this.get(`/user`);
+  };
+  getDetail = (id) => {
+    return this.get(`/user/${id}`);
+  };
 }
 
 export const userService = new UserService();

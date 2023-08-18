@@ -91,6 +91,7 @@ const Search = () => {
               <Col xs={24} sm={11} lg={5}>
                 <Form.Item className={styles.input} size="large" name="jobname">
                   <Input
+                    className={styles.inputField}
                     onChange={onChangeName}
                     placeholder="Nhập tên công việc..."
                   />

@@ -160,7 +160,7 @@ const AdminLayout = ({ children }) => {
             textAlign: "center",
           }}
         >
-          Ant Design ©2023 Created by Ant UED
+          ©2023 Created by Giao Bui
         </Footer>
       </Layout>
     </Layout>

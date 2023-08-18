@@ -4,6 +4,7 @@ import styles from "./cardCompany.module.scss";
 
 const CardCompany = ({ data }) => {
   const router = useRouter();
+  const employer = data?.employerDetail;
   return (
     <div className={styles.cardCompany}>
       <div className={styles.infoImage}>
@@ -12,7 +13,7 @@ const CardCompany = ({ data }) => {
           <div className={styles.logo}>
             <img
               src={
-                data?.image ||
+                employer?.image ||
                 "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/business-logo-design-template-78655edda18bc1196ab28760f1535baa_screen.jpg?ts=1617645324"
               }
               alt=""
@@ -22,12 +23,12 @@ const CardCompany = ({ data }) => {
       </div>
       <div className={styles.info}>
         <h3
-          onClick={() => router.push(`top-employers/${data.id}`)}
+          onClick={() => router.push(`top-employers/${data?.id}`)}
           style={{ fontSize: "17px", margin: "15px 0" }}
         >
-          {data?.name}
+          {employer?.name}
         </h3>
-        <p style={{ fontSize: "12px" }}>{data?.description}</p>
+        <p style={{ fontSize: "12px" }}>{employer?.description}</p>
       </div>
     </div>
   );

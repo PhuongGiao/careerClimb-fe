@@ -1,10 +1,8 @@
-import { Button, Col, Form, Input, Modal, Row, Select } from "antd";
+import { Button, Form, Input, Modal, Select } from "antd";
 import { useEffect, useState } from "react";
-import styles from "./modalEdit.module.scss";
-import { levelService } from "../../../services/levelService";
-import { blogService } from "../../../services/blogService";
-import { openNotification } from "../Notification";
 import { jobService } from "../../../services/jobService";
+import { openNotification } from "../Notification";
+import styles from "./modalEdit.module.scss";
 const { TextArea } = Input;
 
 const ModalEdit = ({
@@ -62,7 +60,8 @@ const ModalEdit = ({
           onFinishFailed={onFinishFailed}
           autoComplete="off"
           className={styles.form}
-          // initialValues={}
+          labelCol={{ span: 24 }}
+          wrapperCol={{ span: 24 }}
         >
           <Form.Item
             label="Tên công việc"

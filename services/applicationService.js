@@ -13,6 +13,9 @@ export class ApplicationService extends BaseService {
   refuse = (id, data) => {
     return this.patch(`/application/refuse/${id}`, data);
   };
+  sendMailConfirm = (id) => {
+    return this.get(`/application/${id}`);
+  };
 }
 
 export const applicationService = new ApplicationService();

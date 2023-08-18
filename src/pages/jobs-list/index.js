@@ -20,7 +20,7 @@ const pageSize = 6;
 const JobsList = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const { name, level, position, category } = router?.query;
+  // const { name, level, position, category } = router?.query;
   const { data: jobs, loading } = useSearch(qs.parse(params.toString()));
 
   const [current, setCurrent] = useState(1);
@@ -62,15 +62,16 @@ const JobsList = () => {
     );
     router.push(url);
   };
-
+  const search = qs.parse(params.toString()).searchText;
   return (
     <div className={styles.jobsList}>
       <div className={styles.container}>
         <div className={styles.main}>
           <div className={styles.search}>
             <SearchInput
-              placeholder={name ? name : "Tìm kiếm công việc..."}
+              placeholder={!search && "Tìm kiếm công việc..."}
               onSearch={handleSearch}
+              defaultValue={search}
             />
             <div className={styles.keys}>
               <div className={styles.eachKey}>
@@ -90,13 +91,13 @@ const JobsList = () => {
           <div className={styles.searchRespon}>
             <SearchFilter />
           </div>
-          <div className={styles.content}>
-            <div className={styles.leftSearch}>
-              <SmSearch />
-            </div>
-            {loading ? (
-              <Loading />
-            ) : (
+          {loading ? (
+            <Loading />
+          ) : (
+            <div className={styles.content}>
+              <div className={styles.leftSearch}>
+                <SmSearch />
+              </div>
               <div className={styles.list}>
                 <h3
                   style={{
@@ -124,8 +125,12 @@ const JobsList = () => {
                   />
                 )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
+          {/* {loading ? (
+              <Loading />
+            ) : (
+            )} */}
         </div>
       </div>
     </div>

@@ -9,12 +9,12 @@ import unhappy from "../../../public/unhappy.jpeg";
 
 const AppliedCard = ({ value }) => {
   const applications = value?.Applications;
+  console.log(applications);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [resultOpen, setResultOpen] = useState(false);
   const [cv, setCv] = useState();
   const [result, setResult] = useState();
   const router = useRouter();
-  console.log(applications);
   const showModal = (val) => {
     setIsModalOpen(true);
     setCv(val.CV);
@@ -48,8 +48,7 @@ const AppliedCard = ({ value }) => {
           </div>
         );
       case 3:
-      case 4:
-        // return "Đã có kết quả";
+        // return "Đã trúng tuyển";
         return (
           <div className={styles.button}>
             {/* <div
@@ -62,7 +61,25 @@ const AppliedCard = ({ value }) => {
               type="primary"
               style={{ color: "#ffffff", padding: "0 20px" }}
             >
-              Đã có kết quả
+              Đã trúng tuyển
+            </Button>
+          </div>
+        );
+      case 4:
+        // return "Đã từ chối";
+        return (
+          <div className={styles.button}>
+            {/* <div
+            style={{ background: "green" }}
+            className={styles.circle}
+          ></div> */}
+            <Button
+              onClick={() => showResult(param)}
+              className={styles.highlightBut}
+              type="primary"
+              style={{ color: "red", padding: "0 20px" }}
+            >
+              Đã bị từ chối
             </Button>
           </div>
         );
@@ -95,10 +112,14 @@ const AppliedCard = ({ value }) => {
                 />
               </div>
               <div className={styles.content}>
-                <h4 onClick={() => router.push(`jobs-list/${value.id}`)}>
+                <h4 onClick={() => router.push(`jobs-list/${val?.Job?.id}`)}>
                   {val?.Job?.name}
                 </h4>
-                <p onClick={() => router.push(`top-employers/${value.id}`)}>
+                <p
+                  onClick={() =>
+                    router.push(`top-employers/${val?.Job?.User?.id}`)
+                  }
+                >
                   {val?.Job?.User?.employerDetail?.name}
                 </p>
                 <p onClick={() => showModal(val)}>Mẫu CV: {val?.CV?.cvName}</p>

@@ -138,9 +138,10 @@ const SmSearch = ({ setKey, key }) => {
         <p className={styles.button}>Đặt lại</p>
       </div>
       <Menu
-        openKeys={["sub1", "sub2", "sub3", "sub4", "sub5"]}
+        // openKeys={["sub1", "sub2", "sub3", "sub4", "sub5"]}
+        defaultOpenKeys={["sub1", "sub2", "sub3", "sub4", "sub5"]}
         theme="light"
-        defaultSelectedKeys={["1"]}
+        // defaultSelectedKeys={["1"]}
         mode="inline"
         style={{ borderInlineEnd: 0 }}
       >

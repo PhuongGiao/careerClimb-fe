@@ -8,6 +8,8 @@ const ConfirmModal = ({
   openConfirm,
   setOpenConfirm,
   setOpen,
+  disabledButton,
+  setDisabledButton,
 }) => {
   const applicationId = appliedUser.id;
   const [value, setValue] = useState(null);
@@ -27,6 +29,7 @@ const ConfirmModal = ({
       await applicationService.updateIntructor(applicationId, values);
       openNotification("success", "Bạn đã ứng tuyển ứng viên này !!!");
       form.resetFields();
+      setDisabledButton(true);
       setOpenConfirm(false);
     } catch (error) {
       openNotification("error", "Something went wrong !!!");

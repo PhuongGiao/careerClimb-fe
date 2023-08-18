@@ -2,7 +2,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Button, Col, Form, Input, Row } from "antd";
 import React from "react";
 import styles from "./searchInput.module.scss";
-const SearchInput = ({ placeholder, onSearch }) => {
+const SearchInput = ({ defaultValue, placeholder, onSearch }) => {
   const Search = Input.Search;
   return (
     <div className={styles.searchInput}>
@@ -16,7 +16,11 @@ const SearchInput = ({ placeholder, onSearch }) => {
         >
           <Col span={24}>
             <Form.Item name="searchInput" style={{ width: "100%", margin: 0 }}>
-              <Search placeholder={placeholder} onSearch={onSearch} />
+              <Search
+                onSearch={onSearch}
+                defaultValue={defaultValue}
+                placeholder={placeholder}
+              />
             </Form.Item>
           </Col>
         </Form>

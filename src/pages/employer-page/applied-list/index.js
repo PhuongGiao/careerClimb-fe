@@ -10,10 +10,8 @@ import ExpandedList from "@/components/ExpandedList/ExpandedList";
 const AppliedList = () => {
   const [appliedList, setAppliedList] = useState([]);
   const [open, setOpen] = useState(false);
-  const [getLevelOptions, setGetLevelOptions] = useState([]);
-  const [getExpOptions, setGetExpOptions] = useState([]);
-  const [getCateOptions, setGetCateOptions] = useState([]);
-  const [getLocationOptions, setGetLocationOptions] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const columns = [
     {
       title: "Tên",
@@ -124,16 +122,19 @@ const AppliedList = () => {
         openNotification("error", "Something went wrong !!!");
       }
     })();
-  }, [open]);
+  }, [open, loading]);
   return (
     <div>
       <Table
         columns={columns}
         expandable={{
           expandedRowRender: (user) => (
-            <div>
-              <ExpandedList user={user} open={open} setOpen={setOpen} />
-            </div>
+            <ExpandedList
+              user={user}
+              open={open}
+              setOpen={setOpen}
+              setLoadingList={setLoading}
+            />
           ),
           //   rowExpandable: (user) => user.name !== "Not Expandable",
         }}

@@ -64,7 +64,7 @@ const JobDetail = () => {
               <div className={styles.infoCompany}>
                 <SmCardCom data={job} />
                 <div className={styles.comments}>
-                  <div className={styles.title}>Bình luận</div>
+                  {/* <div className={styles.title}>Bình luận</div> */}
                 </div>
               </div>
             </Col>

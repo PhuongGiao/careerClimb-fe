@@ -35,6 +35,7 @@ const Card = ({ value }) => {
   const handleCancel = () => {
     setOpen(false);
   };
+  console.log(value);
   return (
     <div className={styles.card}>
       <div
@@ -47,11 +48,7 @@ const Card = ({ value }) => {
         <h4 onClick={() => router.push(`/jobs-list/${value?.id}`)}>
           {value?.name}
         </h4>
-        <p
-          onClick={() =>
-            router.push(`/top-employers/${value?.User.employerDetail?.id}`)
-          }
-        >
+        <p onClick={() => router.push(`/top-employers/${value?.User?.id}`)}>
           {value?.User.employerDetail?.name}
         </p>
         <div className={styles.info}>

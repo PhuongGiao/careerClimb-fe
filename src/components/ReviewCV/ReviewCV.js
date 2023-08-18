@@ -22,6 +22,7 @@ const ReviewCV = ({ open, appliedUser, setLoading, loading, setOpen }) => {
   const [openConfirm, setOpenConfirm] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [refuseModal, setRefuseModal] = useState(false);
+  const [disabledButton, setDisabledButton] = useState(false);
   // console.log(appliedUser);
   const showModal = () => {
     setRefuseModal(true);
@@ -32,6 +33,16 @@ const ReviewCV = ({ open, appliedUser, setLoading, loading, setOpen }) => {
       setLoading(false);
       setOpen(false);
     }, 3000);
+  };
+  const handleOkModal = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setRefuseModal(false);
+    }, 3000);
+  };
+  const handleCancelModal = () => {
+    setRefuseModal(false);
   };
   const handleCancel = () => {
     setOpen(false);
@@ -46,12 +57,12 @@ const ReviewCV = ({ open, appliedUser, setLoading, loading, setOpen }) => {
     // console.log(appliedUser);
     try {
       await applicationService.refuse(appliedUser.id, appliedUser);
-      openNotification("success", "Từ chối thành công !");
+      openNotification("success", "Bạn đã từ chối ứng viên !");
       setRefuseModal(false);
+      setDisabledButton(true);
     } catch (error) {
       openNotification("error", "Something went wrong !!!");
     }
-    setOpen(false);
   };
 
   // const onFinish = (values) => {
@@ -64,7 +75,6 @@ const ReviewCV = ({ open, appliedUser, setLoading, loading, setOpen }) => {
   const showConfirm = () => {
     setOpenConfirm(true);
   };
-
   return (
     <Modal
       open={open}
@@ -87,10 +97,11 @@ const ReviewCV = ({ open, appliedUser, setLoading, loading, setOpen }) => {
 
           <Button
             key="submit"
-            //   loading={loading}
+            loading={loading}
             // onClick={handleOk}
             style={{ border: "1px solid black" }}
             onClick={showModal}
+            disabled={disabledButton}
           >
             Không ứng tuyển
           </Button>
@@ -100,8 +111,9 @@ const ReviewCV = ({ open, appliedUser, setLoading, loading, setOpen }) => {
             key="link"
             // href="https://google.com"
             type="primary"
-            //   loading={loading}
+            loading={loading}
             onClick={showConfirm}
+            disabled={disabledButton}
           >
             Ứng tuyển
           </Button>
@@ -141,45 +153,36 @@ const ReviewCV = ({ open, appliedUser, setLoading, loading, setOpen }) => {
         appliedUser={appliedUser}
         openConfirm={openConfirm}
         setOpenConfirm={setOpenConfirm}
+        disabledButton={disabledButton}
+        setDisabledButton={setDisabledButton}
       />
       <Modal
         title="XÁC NHẬN"
         open={refuseModal}
+        onCancel={handleCancelModal}
+        onOk={handleOkModal}
+        width="fit-content"
+        centered
         footer={[]}
-        // onOk={handleOkRefuse}
-        // onCancel={handleCancelRefuse}
-        // footer={[
-        //   <div>
-        //     <Button
-        //       key="submit"
-        //       type="second"
-        //       style={{ border: "1px solid black" }}
-        //     >
-        //       Huỷ
-        //     </Button>
-
-        //     <Button
-        //       className={styles.button}
-        //       key="refuse"
-        //       type="primary"
-        //       onClick={handleRefuse}
-        //     >
-        //       Từ chối
-        //     </Button>
-        //   </div>,
-        // ]}
       >
-        <h1>Bạn muốn TỪ CHỐI ứng viên này ?</h1>
-        <div>
+        <p style={{ color: "grey" }}>
+          Bạn muốn <b style={{ color: "red" }}>TỪ CHỐI</b> ứng viên này ?
+        </p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "20px 0 0 0",
+          }}
+        >
           <Button
             key="submit"
             type="second"
-            style={{ border: "1px solid black" }}
+            // style={{ border: "1px solid black" }}
             onClick={() => setRefuseModal(false)}
           >
-            Huỷ
+            Trở về
           </Button>
-
           <Button
             className={styles.button}
             key="refuse"

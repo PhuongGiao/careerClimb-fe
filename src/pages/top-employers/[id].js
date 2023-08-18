@@ -8,6 +8,7 @@ import { employerService } from "../../../services/employerService";
 import { jobService } from "../../../services/jobService";
 import styles from "./employerDetail.module.scss";
 import Card from "@/components/Card/Card";
+import { userService } from "../../../services/userServices";
 
 const EmployerDetail = () => {
   const router = useRouter();
@@ -18,17 +19,35 @@ const EmployerDetail = () => {
   const [maxIndex, setMaxIndex] = useState(6);
   const [jobsByEmployer, setJobsByEmployer] = useState();
 
+  // useEffect(() => {
+  //   id &&
+  //     (async () => {
+  //       try {
+  //         const [{ data: employer }, { data: jobs }] = await Promise.all([
+  //           userService.getDetail(id),
+  //           jobService.getJobByEmployerPage(id),
+  //         ]);
+  //         console.log(employer.data);
+  //         setEmployer(employer.data);
+  //         setJobs(jobs.data);
+
+  //         // setJobsByEmployer(jobsByEmployer.data);
+  //       } catch (error) {
+  //         openNotification("error", error);
+  //       }
+  //     })();
+  // }, [id]);
   useEffect(() => {
     id &&
       (async () => {
         try {
-          const [{ data }, { data: jobs }] = await Promise.all([
-            employerService.getDetail(id),
+          // const { data } = await userService.getDetail(id);
+          const [{ data: employer }, { data: jobs }] = await Promise.all([
+            userService.getDetail(id),
             jobService.getJobByEmployerPage(id),
           ]);
-          setEmployer(data);
+          setEmployer(employer);
           setJobs(jobs.data);
-          // setJobsByEmployer(jobsByEmployer.data);
         } catch (error) {
           openNotification("error", error);
         }
@@ -56,21 +75,21 @@ const EmployerDetail = () => {
                 padding: "25px 30px",
               }}
             >
-              <h2>{employer?.name}</h2>
+              <h2>{employer?.employerDetail?.name}</h2>
               <h3>Giới thiệu về công ty</h3>
-              <p>{employer?.description}</p>
+              <p>{employer?.employerDetail?.description}</p>
             </Col>
           </Row>
           <div className={styles.title}>
             <h1>Công ty đang ứng tuyển</h1>
           </div>
           <Row
-            gutter={[30, 0]}
+            gutter={[30, 30]}
             span={24}
             style={{
               margin: "10px 0",
               lineHeight: 2.2,
-              justifyContent: "space-between",
+              // justifyContent: "space-between",
               padding: "25px 0px",
             }}
           >

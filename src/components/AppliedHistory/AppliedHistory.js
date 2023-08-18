@@ -8,7 +8,6 @@ import styles from "./appliedHistory.module.scss";
 
 const AppliedHistory = () => {
   const [appliedList, setAppliedList] = useState([]);
-
   useEffect(() => {
     (async () => {
       try {
@@ -35,12 +34,16 @@ const AppliedHistory = () => {
           Đã có kết quả - Vui lòng check gmail
         </div>
       </div>
-      <Row gutter={[25, 35]}>
-        {appliedList &&
-          appliedList.map((value, idx) => (
-            <AppliedCard value={value} key={idx} />
-          ))}
-      </Row>
+      {appliedList ? (
+        <Row gutter={[25, 35]}>
+          {appliedList &&
+            appliedList.map((value, idx) => (
+              <AppliedCard value={value} key={idx} />
+            ))}
+        </Row>
+      ) : (
+        <p>Bạn chưa có công việc nào !!!</p>
+      )}
     </div>
   );
 };

@@ -79,7 +79,7 @@ const AppliedList = () => {
       title: "Ngày tạo",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (_) => <p>{moment(_).format("DD MMMM YYYY")}</p>,
+      render: (_) => <p>{moment(_).format("DD/MM/YYYY")}</p>,
       sorter: {
         compare: (a, b) => moment(a.createdAt) - moment(b.createdAt),
         multiple: 2,

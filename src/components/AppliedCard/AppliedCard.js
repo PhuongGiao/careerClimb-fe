@@ -6,10 +6,9 @@ import accImg from "./../../../public/accImg.jpeg";
 // import error from "../../../public/error.png";
 import happy from "../../../public/happy.jpeg";
 import unhappy from "../../../public/unhappy.jpeg";
+import moment from "moment";
 
 const AppliedCard = ({ value }) => {
-  const applications = value?.Applications;
-  console.log(applications);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [resultOpen, setResultOpen] = useState(false);
   const [cv, setCv] = useState();
@@ -47,7 +46,7 @@ const AppliedCard = ({ value }) => {
             </p>
           </div>
         );
-      case 3:
+      case 3 && 5:
         // return "Đã trúng tuyển";
         return (
           <div className={styles.button}>
@@ -59,7 +58,11 @@ const AppliedCard = ({ value }) => {
               onClick={() => showResult(param)}
               className={styles.highlightBut}
               type="primary"
-              style={{ color: "#ffffff", padding: "0 20px" }}
+              style={{
+                color: "#ffffff",
+                padding: "0 20px",
+                background: "green",
+              }}
             >
               Đã trúng tuyển
             </Button>
@@ -77,7 +80,12 @@ const AppliedCard = ({ value }) => {
               onClick={() => showResult(param)}
               className={styles.highlightBut}
               type="primary"
-              style={{ color: "red", padding: "0 20px" }}
+              style={{
+                color: "red",
+                padding: "0 20px",
+                background: "#ffffff",
+                border: "1px solid red",
+              }}
             >
               Đã bị từ chối
             </Button>
@@ -95,48 +103,37 @@ const AppliedCard = ({ value }) => {
         );
     }
   };
+
   return (
     <>
-      {/* <Col key={value.id} span={12}> */}
-      {applications !== null &&
-        applications?.map((val) => (
-          <Col key={value.id} span={8}>
-            <div className={styles.card}>
-              <div
-                className={styles.image}
-                onClick={() => router.push(`jobs-list/${val?.id}`)}
-              >
-                <img
-                  src={val?.Job?.User?.employerDetail?.image || accImg.src}
-                  alt=""
-                />
-              </div>
-              <div className={styles.content}>
-                <h4 onClick={() => router.push(`jobs-list/${val?.Job?.id}`)}>
-                  {val?.Job?.name}
-                </h4>
-                <p
-                  onClick={() =>
-                    router.push(`top-employers/${val?.Job?.User?.id}`)
-                  }
-                >
-                  {val?.Job?.User?.employerDetail?.name}
-                </p>
-                <p onClick={() => showModal(val)}>Mẫu CV: {val?.CV?.cvName}</p>
-                {statusSwitch(val)}
-                {/* <div className={styles.button}>
-                <div
-                  style={{ background: "red" }}
-                  className={styles.circle}
-                ></div>
-                <p className={styles.highlightBut} disabled>
-                  {statusSwitch(value?.JobCv?.status)}
-                </p>
-              </div> */}
-              </div>
-            </div>
-          </Col>
-        ))}
+      <Col key={value.id} span={8}>
+        <div className={styles.card}>
+          <div
+            className={styles.image}
+            onClick={() => router.push(`jobs-list/${value?.id}`)}
+          >
+            <img
+              src={value?.Job?.User?.employerDetail?.image || accImg.src}
+              alt=""
+            />
+          </div>
+          <div className={styles.content}>
+            <h4 onClick={() => router.push(`jobs-list/${value?.Job?.id}`)}>
+              {value?.Job?.name}
+            </h4>
+            <p
+              onClick={() =>
+                router.push(`top-employers/${value?.Job?.User?.id}`)
+              }
+            >
+              {value?.Job?.User?.employerDetail?.name}
+            </p>
+            <p onClick={() => showModal(value)}>Mẫu CV: {value?.CV?.cvName}</p>
+            {statusSwitch(value)}
+          </div>
+        </div>
+      </Col>
+
       {/* </Col> */}
       <Modal
         title="HỒ SƠ CỦA BẠN"
@@ -182,7 +179,7 @@ const AppliedCard = ({ value }) => {
         onCancel={handleCancelResult}
         footer={[]}
       >
-        {result?.status === 3 ? (
+        {result?.status === 3 || result?.status === 5 ? (
           <div className={styles.notification}>
             {/* <img src={success.src} /> */}
             <div className={styles.imgNoti}>

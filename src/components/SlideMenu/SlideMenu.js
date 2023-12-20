@@ -6,47 +6,52 @@ import {
 import { Menu } from "antd";
 import React, { useState } from "react";
 import styles from "./slideMenu.module.scss";
+import { useRouter } from "next/router";
 
-const getItem = (label, key, icon, children, type) => {
+const getItem = (label, key, icon) => {
   return {
+    label,
     key,
     icon,
-    children,
-    label,
-    type,
   };
 };
 const items = [
-  getItem("Trang chủ", "sub1", <MailOutlined />),
-  getItem("Việc làm", "sub2", <MailOutlined />),
-  getItem("Ngành nghề", "sub3", <MailOutlined />),
-  getItem("Nhà tuyển dụng", "sub4", <AppstoreOutlined />, [
-    getItem("Nhà tuyển dụng hàng đầu", "5"),
-    getItem("Nhà tuyển dụng đã ứng tuyển", "6"),
-  ]),
-  getItem("CV của tôi", "sub5", <SettingOutlined />),
-  getItem("Blog", "sub6", <SettingOutlined />),
+  getItem("Trang chủ", "/", <MailOutlined />),
+  getItem("Việc làm", "/jobs-list", <MailOutlined />),
+  getItem("Ngành nghề", "/careers", <MailOutlined />),
+  getItem("Nhà tuyển dụng", "/top-employers", <AppstoreOutlined />),
+  getItem("CV của tôi", "/mycv", <SettingOutlined />),
+  getItem("Blog", "/blog", <SettingOutlined />),
 ];
 const rootSubmenuKeys = ["sub1", "sub2", "sub4"];
-const SlideMenu = () => {
-  const [openKeys, setOpenKeys] = useState(["sub1"]);
-  const onOpenChange = (keys) => {
-    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-      setOpenKeys(keys);
-    } else {
-      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
-    }
+const SlideMenu = ({ setOpen }) => {
+  const router = useRouter();
+  const [current, setCurrent] = useState(router.pathname);
+  // const [openKeys, setOpenKeys] = useState(["sub1"]);
+  // const onOpenChange = (keys) => {
+  //   const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+  //   if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+  //     setOpenKeys(keys);
+  //   } else {
+  //     setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+  //   }
+  // };
+
+  const onClick = (e) => {
+    router.push(e.key);
+    setCurrent(e.key);
+    setTimeout(() => {
+      setOpen(false);
+    }, 500);
   };
   return (
     <div className={styles.slideMenu}>
       <Menu
         mode="inline"
-        openKeys={openKeys}
-        onOpenChange={onOpenChange}
-        style={{
-          borderInlineEnd: 0,
-        }}
+        // openKeys={openKeys}
+        // onOpenChange={onOpenChange}
+        selectedKeys={current}
+        onClick={onClick}
         items={items}
       />
     </div>

@@ -1,9 +1,12 @@
 @import "../../styles/var";
 .header {
-  padding: 15px 0;
+  box-shadow: #572c0e23 0px 0px 0px 1px;
+
   .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    // max-width: 1200px;
+    padding: 16px 50px;
+    // border-bottom: 1px solid $primary;
+    // box-shadow: #572c0e23 0px 0px 0px 1px;
     .headerRow {
       width: 100%;
       display: flex;
@@ -15,9 +18,10 @@
       .logo {
       }
       .menu {
-        font-weight: 600;
+        font-weight: 500;
+        padding: 0 40px;
         .menuItem {
-          color: $primary !important;
+          color: rgba(0, 0, 0, 0.648) !important;
           border-bottom: none !important;
         }
         .ant-menu-overflow.ant-menu.ant-menu-root.ant-menu-horizontal.ant-menu-light {

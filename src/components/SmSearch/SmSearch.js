@@ -139,7 +139,7 @@ const SmSearch = ({ setKey, key }) => {
       </div>
       <Menu
         // openKeys={["sub1", "sub2", "sub3", "sub4", "sub5"]}
-        defaultOpenKeys={["sub1", "sub2", "sub3", "sub4", "sub5"]}
+        // defaultOpenKeys={["sub1", "sub2", "sub3", "sub4", "sub5"]}
         theme="light"
         // defaultSelectedKeys={["1"]}
         mode="inline"
@@ -147,6 +147,7 @@ const SmSearch = ({ setKey, key }) => {
       >
         <SubMenu
           className={styles.submenu}
+          eventkey="sub1"
           key="sub1"
           icon={<SortAscendingOutlined />}
           title="Loại công việc"
@@ -170,6 +171,7 @@ const SmSearch = ({ setKey, key }) => {
         </SubMenu>
         <SubMenu
           className={styles.submenu}
+          eventkey="sub2"
           key="sub2"
           icon={<BulbOutlined />}
           title="Kinh nghiệm"
@@ -192,6 +194,7 @@ const SmSearch = ({ setKey, key }) => {
         </SubMenu>
         <SubMenu
           className={styles.submenu}
+          eventkey="sub3"
           key="sub3"
           icon={<HomeOutlined />}
           title="Thành phố"
@@ -214,6 +217,7 @@ const SmSearch = ({ setKey, key }) => {
         </SubMenu>
         <SubMenu
           className={styles.submenu}
+          eventkey="sub4"
           key="sub4"
           icon={<UnorderedListOutlined />}
           title="Ngành nghề"
@@ -236,6 +240,7 @@ const SmSearch = ({ setKey, key }) => {
         </SubMenu>
         <SubMenu
           className={styles.submenu}
+          eventkey="sub5"
           key="sub5"
           icon={<DollarOutlined />}
           title="Mức lương"

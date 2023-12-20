@@ -13,6 +13,30 @@ const ExpandedList = ({ user, open, setOpen, setLoadingList }) => {
   // const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [cvSelected, setCvSelected] = useState({});
+  const applyButton = (param) => {
+    switch (param?.status) {
+      case 1 && 2:
+        return "Ứng tuyển";
+      case 3:
+        return "Đã trúng tuyển";
+      case 4:
+        return "Đã từ chối";
+      default:
+        return "Đã trúng tuyển";
+    }
+  };
+  const sendMailButton = (param) => {
+    switch (param?.status) {
+      case 3:
+        return "Gửi mail";
+      case 5:
+        return "Đã gửi mail";
+      case 4:
+        return "Đã từ chối";
+      default:
+        return "Gửi mail";
+    }
+  };
   const showModal = async (applicationInfo) => {
     try {
       setOpen(true);
@@ -75,17 +99,22 @@ const ExpandedList = ({ user, open, setOpen, setLoadingList }) => {
             onClick={() => showModal(record)}
             icon={<EyeOutlined />}
           >
-            {isNotViewed(record) ? "Xem CV" : "Đã ứng tuyển"}
+            {/* {isNotViewed(record) ? "Xem CV" : "Đã ứng tuyển"} */}
+            {applyButton(record)}
           </Button>
 
           <Button
             style={{ width: "152px" }}
             onClick={() => sendEmail(record.id)}
-            disabled={isNotViewed(record) || record.status === 5}
+            disabled={
+              // isNotViewed(record) || record.status === 5 || record.status === 4
+              record.status !== 3
+            }
             type={!isNotViewed(record) ? "primary" : "default"}
             icon={<SendOutlined />}
           >
-            {!isNotViewed(record) ? "Gửi mail" : "Chưa gửi mail"}
+            {/* {!isNotViewed(record) ? "Gửi mail" : "Chưa gửi mail"} */}
+            {sendMailButton(record)}
           </Button>
         </Space>
       ),

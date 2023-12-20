@@ -32,6 +32,8 @@ const ModalBlog = ({ open, handleCancel, setOpen, loading, setLoading }) => {
         //   disabled={isLoading}
         form={form}
         onFinish={onFinish}
+        labelCol={{ span: 24 }}
+        wrapperCol={{ span: 24 }}
         // initialValues={}
       >
         <Form.Item

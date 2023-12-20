@@ -26,6 +26,7 @@ const Header = () => {
   const router = useRouter();
   const [current, setCurrent] = useState(router.pathname);
   const [open, setOpen] = useState(false);
+  const [specialBut, setSpecialBut] = useState();
   const text = "";
   const content = (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -68,40 +69,95 @@ const Header = () => {
   const onClose = () => {
     setOpen(false);
   };
-  const menu = [
-    {
-      key: "/",
-      label: "Trang chủ",
-    },
-    {
-      key: "/jobs-list",
-      label: "Việc làm",
-    },
-    {
-      key: "/careers",
-      label: "Ngành nghề",
-    },
-    {
-      key: "/top-employers",
-      label: "Nhà tuyển dụng",
-    },
-    {
-      key: "/mycv",
-      label: "CV của tôi",
-    },
-    {
-      key: "/blog",
-      label: "Blog",
-    },
-  ];
+  const menu = user?.isCandidate
+    ? [
+        {
+          id: 1,
+          key: "/",
+          label: "Trang chủ",
+        },
+        {
+          id: 2,
+          key: "/jobs-list",
+          label: "Việc làm",
+        },
+        {
+          id: 3,
+          key: "/careers",
+          label: "Ngành nghề",
+        },
+        {
+          id: 4,
+          key: "/top-employers",
+          label: "Nhà tuyển dụng",
+        },
+        {
+          id: 5,
+          key: "/mycv",
+          label: "CV của tôi",
+        },
+        {
+          id: 6,
+          key: "/blog",
+          label: "Blog",
+        },
+        {
+          id: 6,
+          key: "/personality-test",
+          label: "Công cụ",
+        },
+      ]
+    : [
+        {
+          id: 1,
+          key: "/",
+          label: "Trang chủ",
+        },
+        {
+          id: 2,
+          key: "/jobs-list",
+          label: "Việc làm",
+        },
+        {
+          id: 3,
+          key: "/careers",
+          label: "Ngành nghề",
+        },
+        {
+          id: 4,
+          key: "/top-employers",
+          label: "Nhà tuyển dụng",
+        },
+        {
+          id: 5,
+          key: "/blog",
+          label: "Blog",
+        },
+        {
+          id: 6,
+          key: "/personality-test",
+          label: "Công cụ",
+          // style: {
+          //   border: "1px solid #572c0e",
+          //   borderRadius: "16px",
+          //   padding: "0 10px",
+          //   color: "#572c0e",
+          //   padding: "0 20px",
+          //   "::hover": {
+          //     color: "red",
+          //   },
+          // },
+        },
+      ];
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <Row gutter={[0, 0]} className={styles.headerRow}>
-          <Col span={6} className={styles.logo}>
-            <img style={{ width: "80%" }} src={logo.src} />
+          <Col span={3} className={styles.logo}>
+            <img style={{ width: "100%" }} src={logo.src} />
           </Col>
-          <Col xs={0} md={0} lg={15} className={styles.menu}>
+          <Col xs={0} md={0} lg={18} className={styles.menu}>
             <Menu
               mode="horizontal"
               selectedKeys={current}
@@ -118,21 +174,6 @@ const Header = () => {
             className={styles.div}
           >
             {user ? (
-              // <Popconfirm
-              //   placement="bottomRight"
-              //   title={<div>custom</div>}
-              //   description={description}
-              //   onConfirm={confirm}
-              //   okText={<div></div>}
-              //   cancelText={<div></div>}
-              // >
-              //   <div className={styles.user}>
-              //     <div className={styles.avaImg}>
-              //       <img src={user?.image || user?.googlePicture} />
-              //     </div>
-              //     <h4>{user?.firstName}</h4>
-              //   </div>
-              // </Popconfirm>
               <Popover
                 placement="bottomRight"
                 title={text}
@@ -177,7 +218,7 @@ const Header = () => {
                 onClose={onClose}
                 open={open}
               >
-                <SlideMenu />
+                <SlideMenu setOpen={setOpen} />
               </Drawer>
             </Col>
           </Col>

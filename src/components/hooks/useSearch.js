@@ -9,7 +9,7 @@ const useSearch = (params) => {
     setLoading(true);
     (async () => {
       try {
-        const { data } = await jobService.getAll(params);
+        const { data } = await jobService.getAll(params || "");
         setData(data.data);
       } catch (error) {
         openNotification("error", "Please try again!!!");
@@ -20,7 +20,6 @@ const useSearch = (params) => {
     }, 1000);
     return () => clearInterval(inter);
   }, []);
-
   return { data, loading };
 };
 

@@ -76,23 +76,3 @@
     }
   }
 }
-
-@media only screen and (max-width: 480px) {
-  .card {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    .content {
-      width: 100%;
-      display: flex;
-      .info {
-        display: flex;
-        justify-content: center;
-      }
-      .button {
-        display: flex;
-        justify-content: space-between;
-      }
-    }
-  }
-}

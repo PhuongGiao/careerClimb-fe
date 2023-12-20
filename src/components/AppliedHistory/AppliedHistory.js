@@ -5,19 +5,38 @@ import Card from "../Card/Card";
 import AppliedCard from "../AppliedCard/AppliedCard";
 import { Col, Row } from "antd";
 import styles from "./appliedHistory.module.scss";
+import moment from "moment";
+import { applicationService } from "../../../services/applicationService";
 
 const AppliedHistory = () => {
-  const [appliedList, setAppliedList] = useState([]);
+  const [appliedListByMonth, setAppliedListByMonth] = useState([]);
+
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await cvService.getMyCVs();
-        setAppliedList(data.data);
+        const { data } = await applicationService.getMyCVs();
+        const dayList = [
+          ...new Set(
+            data?.applications?.map((application) =>
+              moment(application.createdAt).format("MM-YYYY")
+            )
+          ),
+        ];
+        const renderList = dayList.map((value) => {
+          return {
+            monthYear: value,
+            data: data?.applications.filter(
+              (val) => moment(val.createdAt).format("MM-YYYY") === value
+            ),
+          };
+        });
+        setAppliedListByMonth(renderList);
       } catch (error) {
         openNotification("error", "Something went wrong !!!");
       }
     })();
   }, []);
+
   return (
     <div>
       <div className={styles.flex}>
@@ -34,13 +53,19 @@ const AppliedHistory = () => {
           Đã có kết quả - Vui lòng check gmail
         </div>
       </div>
-      {appliedList ? (
-        <Row gutter={[25, 35]}>
-          {appliedList &&
-            appliedList.map((value, idx) => (
-              <AppliedCard value={value} key={idx} />
-            ))}
-        </Row>
+      {appliedListByMonth ? (
+        <>
+          {appliedListByMonth?.map((itemByMonth) => (
+            <div style={{ margin: "24px 0" }} key={itemByMonth}>
+              <h2 style={{ margin: " 10px 0" }}>{itemByMonth.monthYear}</h2>
+              <Row gutter={[25, 25]}>
+                {itemByMonth?.data.map((applied, idx) => (
+                  <AppliedCard value={applied} key={idx} />
+                ))}
+              </Row>
+            </div>
+          ))}
+        </>
       ) : (
         <p>Bạn chưa có công việc nào !!!</p>
       )}

@@ -11,7 +11,6 @@ const LoginEmployer = () => {
   const router = useRouter();
   const user = useSelector((state) => state.userReducer.user);
   const role = user?.isCandidate;
-
   return (
     // <div className={styles.login}>
     //   <div className={styles.container}>
@@ -66,10 +65,31 @@ const LoginEmployer = () => {
     // </div>
 
     <>
-      {!role ? (
-        <JobsListEmployer />
+      {user ? (
+        !role ? (
+          <JobsListEmployer />
+        ) : (
+          <div>
+            <h1 onClick={() => router.push("/")}>PAGE NOT FOUND</h1>
+            <Button type="primary" onClick={() => router.push("/")}>
+              Trang chủ
+            </Button>
+          </div>
+        )
       ) : (
-        <Button onClick={() => router.push("/")}>PAGE NOT FOUND</Button>
+        <div
+          style={{
+            display: "flex",
+            alignContent: "center",
+            flexDirection: "column",
+            flexWrap: "wrap",
+          }}
+        >
+          <h1 onClick={() => router.push("/")}>Vui lòng đăng nhập lại !!!</h1>
+          <Button type="primary" onClick={() => router.push("/login-register")}>
+            Đăng nhập
+          </Button>
+        </div>
       )}
     </>
   );

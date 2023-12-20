@@ -1,9 +1,17 @@
-import { SET_AUTH, SET_LOADING, SET_USER } from "../types/userTypes";
+import {
+  SET_AUTH,
+  SET_LOADING,
+  SET_MY_CVS,
+  SET_SAVED_LIST,
+  SET_USER,
+} from "../types/userTypes";
 
 const initialValue = {
   user: null,
   authing: true,
   loading: false,
+  saved: [],
+  myCvs: [],
 };
 
 const userReducer = (state = initialValue, action) => {
@@ -12,6 +20,17 @@ const userReducer = (state = initialValue, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case SET_SAVED_LIST:
+      const idList = action.payload.map((val) => val.jobId);
+      return {
+        ...state,
+        saved: idList,
+      };
+    case SET_MY_CVS:
+      return {
+        ...state,
+        myCvs: action.payload,
       };
     case SET_AUTH:
       return {
@@ -23,6 +42,7 @@ const userReducer = (state = initialValue, action) => {
         ...state,
         loading: action.payload,
       };
+
     default:
       return state;
   }

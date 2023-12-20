@@ -1,0 +1,52 @@
+@import "../../styles/var";
+.tests {
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 24px;
+      line-height: 1.5;
+      h2 {
+        color: $primary;
+      }
+      span {
+        color: grey;
+        b {
+          color: $primary;
+        }
+      }
+    }
+    [title] {
+      display: flex;
+      justify-content: center;
+      font-size: 18px;
+      text-align: center;
+    }
+    .choices {
+      display: flex;
+      justify-content: center;
+      height: fit-content;
+      padding: 20px 0;
+      font-size: 16px;
+      font-weight: 600;
+      .titleBefore {
+        padding: 0 16px;
+        color: green;
+      }
+      .titleAfter {
+        color: purple;
+        padding: 0 16px;
+      }
+      label {
+        margin: 0 5px !important;
+      }
+    }
+    .submitButton {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

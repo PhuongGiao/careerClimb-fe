@@ -2,8 +2,14 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Button, Col, Form, Input, Row } from "antd";
 import React from "react";
 import styles from "./searchInput.module.scss";
-const SearchInput = ({ defaultValue, placeholder, onSearch }) => {
-  const Search = Input.Search;
+import qs from "query-string";
+import { useSearchParams } from "next/navigation";
+
+const SearchInput = ({ initialvalues, placeholder, onSearch }) => {
+  const params = useSearchParams();
+  const searchText = qs.parse(params.toString())?.searchText;
+
+  const { Search } = Input;
   return (
     <div className={styles.searchInput}>
       <Row className={styles.searchInput}>
@@ -16,10 +22,23 @@ const SearchInput = ({ defaultValue, placeholder, onSearch }) => {
         >
           <Col span={24}>
             <Form.Item name="searchInput" style={{ width: "100%", margin: 0 }}>
-              <Search
+              {/* <Search
                 onSearch={onSearch}
-                defaultValue={defaultValue}
-                placeholder={placeholder}
+                // initialvalues={defaultValue}
+                // initialvalues="asd"
+                initialValues="asdj"
+                // placeholder={placeholder}
+              /> */}
+              {/* 
+              <Input value={searchText || "asd"} /> */}
+
+              <Search
+                placeholder={searchText || "input search text"}
+                allowClear
+                enterButton="Search"
+                size="large"
+                onSearch={onSearch}
+                value={searchText}
               />
             </Form.Item>
           </Col>

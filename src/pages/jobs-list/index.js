@@ -21,6 +21,7 @@ const JobsList = () => {
   const router = useRouter();
   const params = useSearchParams();
   // const { name, level, position, category } = router?.query;
+
   const { data: jobs, loading } = useSearch(qs.parse(params.toString()));
 
   const [current, setCurrent] = useState(1);
@@ -60,18 +61,20 @@ const JobsList = () => {
         skipNull: true,
       }
     );
+
     router.push(url);
   };
-  const search = qs.parse(params.toString()).searchText;
+  const search = qs.parse(params.toString())?.searchText;
+
   return (
     <div className={styles.jobsList}>
       <div className={styles.container}>
         <div className={styles.main}>
           <div className={styles.search}>
             <SearchInput
-              placeholder={!search && "Tìm kiếm công việc..."}
+              placeholder={search || "Tìm kiếm công việc..."}
               onSearch={handleSearch}
-              defaultValue={search}
+              initialvalues={search}
             />
             <div className={styles.keys}>
               <div className={styles.eachKey}>

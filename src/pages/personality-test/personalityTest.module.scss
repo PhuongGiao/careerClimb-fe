@@ -1,0 +1,55 @@
+@import "../../styles/var";
+
+.personalityTest {
+  .container {
+    max-width: 1200px;
+    margin: 24px auto;
+    .bgContent {
+      // background-color: rgba(239, 239, 239, 0.283);
+      height: fit-content;
+      .content {
+        display: flex;
+        // align-items: center;
+        .textContent {
+          width: 60%;
+          font-size: 16px;
+          text-align: justify;
+          p {
+            line-height: 2;
+            // padding: 10px 0;
+          }
+        }
+        .imgContent {
+          width: 40%;
+          img {
+            width: 100%;
+          }
+        }
+        .butContent {
+          margin: 20px 0;
+        }
+      }
+    }
+    .infUser {
+      display: flex;
+      width: 100%;
+      padding: 0 16px;
+      background-color: rgba(239, 239, 239, 0.283);
+      align-items: center;
+      .avaUser {
+        width: 20%;
+        img {
+          width: 100%;
+          border-radius: 100%;
+          border: 1px solid grey;
+        }
+      }
+      .information {
+        line-height: 1.5;
+        width: 80%;
+        display: block;
+        margin: 16px;
+      }
+    }
+  }
+}

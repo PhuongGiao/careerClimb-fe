@@ -36,6 +36,8 @@ const CreateCV = ({
       autoComplete="off"
       className={styles.form}
       loading={loadingCreate}
+      labelCol={{ span: 24 }}
+      wrapperCol={{ span: 24 }}
     >
       <Form.Item
         label="Tên CV"

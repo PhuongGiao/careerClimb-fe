@@ -49,14 +49,14 @@ const Home = () => {
                 margin: "25px 0",
               }}
             >
-              Searching...
+              Tìm kiếm
             </h1>
           </div>
           <Search />
         </section>
         <section>
           <div className={styles.container}>
-            <h1 className={styles.title}>các ngành nghề nổi bật</h1>
+            <h1 className={styles.title}>Nhóm ngành nổi bật</h1>
           </div>
           <Category />
         </section>

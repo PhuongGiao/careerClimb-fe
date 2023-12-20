@@ -1,41 +1,18 @@
-import {
-  HeartFilled,
-  HeartOutlined,
-  HeartTwoTone,
-  HomeOutlined,
-} from "@ant-design/icons";
-import { Button, Tag } from "antd";
+import { Col, Row, Tag } from "antd";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
-import styles from "./card.module.scss";
-import ApplyModal from "../ApplyModal/ApplyModal";
-import WarningModal from "../WarningModal/WarningModal";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import ApplyButton from "../ApplyButton/ApplyButton";
+import SavedButton from "../SavedButton/SavedButton";
 import accImg from "./../../../public/accImg.jpeg";
+import styles from "./card.module.scss";
 
-const Card = ({ value }) => {
+const Card = ({ value, saveButton, setSaveButton }) => {
   let user = useSelector((state) => state.userReducer.user);
   const router = useRouter();
   const [isSaved, setisSaved] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const showModal = () => {
-    setOpen(true);
-  };
-  const handleOk = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setOpen(false);
-    }, 3000);
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-  };
-  console.log(value);
   return (
     <div className={styles.card}>
       <div
@@ -62,33 +39,14 @@ const Card = ({ value }) => {
             {value?.Salary?.name || "Thương lượng"}
           </Tag>
         </div>
-        <div className={styles.button}>
-          <Button
-            type="primary"
-            onClick={showModal}
-            className={styles.highlightBut}
-            disabled={user?.isCandidate === false}
-          >
-            Ứng tuyển ngay
-          </Button>
-          <Button
-            type="link"
-            danger
-            style={{ border: 0, boxShadow: "none", width: "150px !important" }}
-            onClick={() => (user ? setSaved(!saved) : setOpen(true))}
-            disabled={user?.isCandidate === false}
-          >
-            {saved ? <HeartFilled /> : <HeartOutlined />}
-          </Button>
-        </div>
-        <ApplyModal
-          open={open}
-          handleOk={handleOk}
-          handleCancel={handleCancel}
-          loading={loading}
-          job={value}
-          user={user}
-        />
+        <Row gutter={5}>
+          <Col span={19}>
+            <ApplyButton value={value} />
+          </Col>
+          <Col span={5}>
+            <SavedButton jobId={value.id} />
+          </Col>
+        </Row>
       </div>
     </div>
   );

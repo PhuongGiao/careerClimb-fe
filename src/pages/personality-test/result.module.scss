@@ -1,0 +1,96 @@
+@import "../../styles/var";
+
+.result {
+  background-color: #f2f2f2;
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    .title {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding-top: 24px;
+      .personality {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.4;
+        h1 {
+          color: $primary;
+          font-weight: 800;
+        }
+        h2 {
+          color: rgb(128, 128, 128);
+          font-weight: 500;
+          font-size: 24px !important;
+        }
+      }
+      .bigImg {
+        padding-bottom: 24px;
+      }
+      h2 {
+        color: $primary;
+      }
+    }
+  }
+}
+.info {
+  max-width: 800px;
+  margin: 0 auto;
+  h3 {
+    margin: 16px 0;
+  }
+  .info {
+    .description {
+      font-size: 18px;
+      padding-bottom: 20px;
+      h2 {
+        color: $primary;
+      }
+    }
+  }
+  .summary {
+    margin-top: 20px;
+    b {
+      color: $primary;
+    }
+    h4 {
+      text-transform: uppercase;
+      padding: 20px 0 0 0;
+    }
+    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f9f9f9;
+      border: 1px solid #dddfe2;
+      border-radius: 10px;
+      padding: 25px;
+      h3 {
+        color: $primary;
+        margin: 8px 0 !important;
+        text-decoration: underline;
+      }
+      p {
+        // padding-top: 20px;
+      }
+    }
+    .otherPersonality {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f9f9f9;
+      border: 1px solid #dddfe2;
+      border-radius: 10px;
+      padding: 25px;
+      margin: 12px 0;
+      h3 {
+        color: $primary;
+        margin: 8px 0 !important;
+        text-decoration: underline;
+      }
+    }
+  }
+  .recommendJob {
+  }
+}

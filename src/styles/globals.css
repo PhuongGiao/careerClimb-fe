@@ -23,7 +23,8 @@ ul {
 } */
 .ant-menu-item-selected {
   background-color: transparent !important;
-  color: #a7a7a7 !important;
+  color: #572c0e !important;
+  font-weight: 600;
 }
 
 .ant-menu-item:not(.ant-menu-item-selected):hover {
@@ -67,9 +68,9 @@ ul {
   justify-content: center !important;
 }
 
-/* menu home */
+/* menu home selected button */
 .ant-menu-item-selected::after {
-  border-bottom-color: #bbbbbb !important;
+  border-bottom-color: #fff !important;
 }
 :where(.css-dev-only-do-not-override-zsf9wb).ant-input-group
   .ant-input-group-addon {

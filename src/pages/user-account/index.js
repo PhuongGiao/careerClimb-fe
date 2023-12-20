@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import styles from "./userAccount.module.scss";
 import { useSelector } from "react-redux";
 import ModalEditUser from "@/components/ModalEditUser/ModalEditUser";
+import SavedJob from "@/components/SavedJob/SavedJob";
 
 const UserAccount = () => {
   const [form] = Form.useForm();
@@ -121,7 +122,7 @@ const UserAccount = () => {
     {
       key: "3",
       label: `Công việc đã lưu`,
-      children: `Chưa có công việc nào được lưu`,
+      children: <SavedJob />,
     },
   ];
   return (

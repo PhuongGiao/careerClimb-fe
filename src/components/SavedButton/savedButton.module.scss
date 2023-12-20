@@ -1,0 +1,9 @@
+@import "../../styles/var";
+.savedButton {
+  width: 100% !important;
+  //   background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(225, 225, 225, 0.632) !important;
+}

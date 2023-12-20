@@ -12,8 +12,8 @@ import WarningModal from "../WarningModal/WarningModal";
 import { applicationService } from "../../../services/applicationService";
 
 const ApplyModal = ({ open, handleOk, handleCancel, job, user }) => {
-  // let user = useSelector((state) => state.userReducer.user);
-  const [myCVs, setMyCVs] = useState([]);
+  let myCvs = useSelector((state) => state.userReducer.myCvs);
+  // const [myCVs, setMyCVs] = useState([]);
   const [CV, setCV] = useState();
   const [loading, setLoading] = useState(false);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
@@ -45,17 +45,12 @@ const ApplyModal = ({ open, handleOk, handleCancel, job, user }) => {
     setIsCreateOpen(true);
   };
 
-  useEffect(() => {
-    user &&
-      (async () => {
-        setLoading(true);
-        try {
-          const { data } = await cvService.getMyCVs();
-          setMyCVs(data.data);
-        } catch (error) {}
-        setLoading(false);
-      })();
-  }, [open, loadingCreate, user]);
+  // useEffect(() => {
+  //   user &&
+  //     (async () => {
+
+  //     })();
+  // }, [open, loadingCreate, user]);
 
   return (
     <>
@@ -87,7 +82,7 @@ const ApplyModal = ({ open, handleOk, handleCancel, job, user }) => {
               defaultValue={0}
               disabled={loading}
             >
-              {myCVs?.map((cv) => (
+              {myCvs?.map((cv) => (
                 <CvCard key={cv.id} cv={cv} />
               ))}
             </Radio.Group>

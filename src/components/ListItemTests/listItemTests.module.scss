@@ -1,0 +1,29 @@
+@import "../../styles/var";
+// .agree100 {
+//   color: green;
+// }
+// .agree75 {
+//   color: green;
+// }
+// .agree25 {
+//   color: green;
+// }
+// .agree0 {
+//   color: grey;
+// }
+// .disagree25 {
+//   color: purple;
+// }
+// .disagree75 {
+//   color: purple;
+// }
+// .disagree100 {
+//   color: purple;
+// }
+.ant-radio-group-solid
+  :where(
+    .css-dev-only-do-not-override-a6n4g7
+  ).ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  background: green;
+  border-color: green;
+}

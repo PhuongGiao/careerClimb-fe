@@ -16,6 +16,9 @@ export class ApplicationService extends BaseService {
   sendMailConfirm = (id) => {
     return this.get(`/application/${id}`);
   };
+  getMyCVs = () => {
+    return this.get(`/application/getMyCvs`);
+  };
 }
 
 export const applicationService = new ApplicationService();

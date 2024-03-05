@@ -158,7 +158,7 @@ const Login = () => {
                 color: "#572c0e",
               }}
             >
-              <FacebookButton />
+              {/* <FacebookButton /> */}
               <GoogleButton />
             </Space>
           </Col>

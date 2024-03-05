@@ -7,5 +7,8 @@ export class CategoryService extends BaseService {
   getDetail = (id) => {
     return this.get(`/category/${id}`);
   };
+  create = (data) => {
+    return this.post(`/category/`, data);
+  };
 }
 export const categoryService = new CategoryService();

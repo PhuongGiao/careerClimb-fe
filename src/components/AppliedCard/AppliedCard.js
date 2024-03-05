@@ -35,6 +35,7 @@ const AppliedCard = ({ value }) => {
     setResultOpen(false);
   };
   const statusSwitch = (param) => {
+    console.log("🚀 ~ file: AppliedCard.js:38 ~ statusSwitch ~ param:", param);
     switch (param?.status) {
       case 2:
         // return "Đã xem";
@@ -46,7 +47,29 @@ const AppliedCard = ({ value }) => {
             </p>
           </div>
         );
-      case 3 && 5:
+      case 3:
+        // return "Đã trúng tuyển";
+        return (
+          <div className={styles.button}>
+            {/* <div
+              style={{ background: "green" }}
+              className={styles.circle}
+            ></div> */}
+            <Button
+              onClick={() => showResult(param)}
+              className={styles.highlightBut}
+              type="primary"
+              style={{
+                color: "#ffffff",
+                padding: "0 20px",
+                background: "green",
+              }}
+            >
+              Đã trúng tuyển
+            </Button>
+          </div>
+        );
+      case 5:
         // return "Đã trúng tuyển";
         return (
           <div className={styles.button}>

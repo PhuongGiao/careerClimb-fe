@@ -105,8 +105,8 @@ const AdminLayout = ({ children }) => {
                   margin: "16px 0",
                 }}
               >
-                <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                {/* <Breadcrumb.Item>User</Breadcrumb.Item>
+                <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
               </Breadcrumb>
             </Col>
             <Col span={8}>{/* <SearchInput onSearch={handleSearch}/> */}</Col>
@@ -117,19 +117,15 @@ const AdminLayout = ({ children }) => {
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "center",
-                gap: 15,
+                padding: "12px 0",
+                gap: 0,
               }}
             >
-              <p>
-                {" "}
-                <UserOutlined />
-                Admin
-              </p>
               <Button
                 style={{
                   borderColor: "none !important",
                   width: "fit-content",
-                  padding: "0 20px",
+                  padding: "0 12px",
                 }}
               >
                 <SettingOutlined />
@@ -138,11 +134,24 @@ const AdminLayout = ({ children }) => {
                 style={{
                   borderColor: "none !important",
                   width: "fit-content",
-                  padding: "0 20px",
+                  padding: "0 12px",
                 }}
               >
                 <BellOutlined />
               </Button>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <p style={{ textTransform: "uppercase" }}>Admin</p>
+                <div
+                  style={{
+                    border: "1px solid black",
+                    borderRadius: 50,
+                    padding: "8px",
+                    marginLeft: "12px",
+                  }}
+                >
+                  <UserOutlined />
+                </div>
+              </div>
             </Col>
           </Row>
           <div

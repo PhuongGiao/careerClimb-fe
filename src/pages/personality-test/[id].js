@@ -49,7 +49,11 @@ const Result = () => {
     }
     return val.role === infoPersonality?.role;
   });
-  console.log(result);
+  console.log(
+    "🚀 ~ file: [id].js:51 ~ otherTypes ~ infoPersonality:",
+    category
+  );
+
   return (
     <>
       <div className={styles.result}>
@@ -78,13 +82,24 @@ const Result = () => {
               <Divider orientation="left" orientationMargin="0">
                 <h2>Strengths</h2>
               </Divider>
-              <p>{infoPersonality?.strengths}</p>
+              {infoPersonality?.strengths?.map((value) => (
+                <ol className={styles.circle}>
+                  <li>{value}</li>
+                </ol>
+                // <p>{infoPersonality?.strengths}</p>
+              ))}
             </div>
             <div className={styles.description}>
               <Divider orientation="left" orientationMargin="0">
                 <h2>Weaknesses</h2>
               </Divider>
-              <p>{infoPersonality?.weaknesses}</p>
+              {infoPersonality?.weaknesses?.map((value) => (
+                <ol className={styles.circle}>
+                  <li>{value}</li>
+                </ol>
+                // <p>{infoPersonality?.strengths}</p>
+              ))}
+              {/* <p>{infoPersonality?.weaknesses}</p> */}
             </div>
             <div className={styles.description}>
               <Divider orientation="left" orientationMargin="0">
@@ -102,7 +117,13 @@ const Result = () => {
               <Divider orientation="left" orientationMargin="0">
                 <h2>Hobbies</h2>
               </Divider>
-              <p>{infoPersonality?.hobbies_interests}</p>
+              {infoPersonality?.hobbies_interests?.map((value) => (
+                <ol className={styles.circle}>
+                  <li>{value}</li>
+                </ol>
+                // <p>{infoPersonality?.strengths}</p>
+              ))}
+              {/* <p>{infoPersonality?.hobbies_interests}</p> */}
             </div>
             <div className={styles.description}>
               <Divider orientation="left" orientationMargin="0">

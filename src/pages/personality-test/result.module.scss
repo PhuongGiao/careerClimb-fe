@@ -20,9 +20,10 @@
           font-weight: 800;
         }
         h2 {
-          color: rgb(128, 128, 128);
+          color: #333;
           font-weight: 500;
           font-size: 24px !important;
+          font-weight: bold;
         }
       }
       .bigImg {
@@ -35,7 +36,7 @@
   }
 }
 .info {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   h3 {
     margin: 16px 0;
@@ -44,6 +45,10 @@
     .description {
       font-size: 18px;
       padding-bottom: 20px;
+      .circle {
+        list-style-type: circle;
+        padding-left: 20px;
+      }
       h2 {
         color: $primary;
       }
@@ -93,4 +98,14 @@
   }
   .recommendJob {
   }
+}
+
+.default-list {
+  /* Your default list style here */
+  list-style-type: none;
+}
+
+.circle-list {
+  /* Circle list style here */
+  list-style-type: circle;
 }

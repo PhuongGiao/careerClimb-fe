@@ -20,6 +20,7 @@ const UserInfo = ({ next, setRole, user }) => {
   const onFinish = async (values) => {
     try {
       await userService.update(values);
+      openNotification("success", "Successfully !!!");
     } catch (error) {
       openNotification("error", "Please try again !!!");
     }

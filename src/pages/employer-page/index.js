@@ -1,5 +1,5 @@
 import FloatLabel from "@/components/FloatLabel/FloatLabel";
-import { Button, Form, Input, Typography } from "antd";
+import { Button, Form, Input, Modal, Typography } from "antd";
 import { useRouter } from "next/router";
 import styles from "./employerPage.module.scss";
 import React from "react";
@@ -11,6 +11,7 @@ const LoginEmployer = () => {
   const router = useRouter();
   const user = useSelector((state) => state.userReducer.user);
   const role = user?.isCandidate;
+
   return (
     // <div className={styles.login}>
     //   <div className={styles.container}>

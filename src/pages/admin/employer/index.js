@@ -1,88 +1,112 @@
 import { openNotification } from "@/components/Notification";
 import SearchInput from "@/components/SearchInput/SearchInput";
 import AdminLayout from "@/layout/admin";
-import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Space, Table } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Button, Space, Table, Tag } from "antd";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { employerService } from "../../../../services/employerService";
 import styles from "./employer.module.scss";
+import { userService } from "../../../../services/userServices";
 const Employer = () => {
-  const [employerList, setemployerList] = useState([]);
+  const [listOfUsers, setListOfUsers] = useState([]);
   const [key, setKey] = useState("");
-
-  const handleSearch = (searchText) => {
-    setKey(searchText);
+  const onClick = async (id, isActivate) => {
+    try {
+      await userService.verifyAccount(id, isActivate);
+    } catch (error) {
+      openNotification(error, "Something went wrong !!!");
+    }
   };
   const columns = [
     {
-      title: "Tên",
-      dataIndex: "name",
-      key: "name",
-      render: (text) => <p>{text}</p>,
+      title: "Hình ảnh",
+      dataIndex: "image",
+      width: 100,
+      key: "image",
+      render: (_, { employerDetail }) => (
+        <img style={{ width: "100%" }} src={employerDetail?.image} />
+      ),
+    },
+    {
+      title: "Tên doanh nghiệp",
+      dataIndex: "employerDetail",
+      key: "employerDetail",
+      render: (_, { employerDetail }) => (
+        <>{employerDetail ? <p>{employerDetail?.name}</p> : <p>Khác</p>}</>
+      ),
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      render: (_, { email }) => <>{email ? <p>{email}</p> : <p>Khác</p>}</>,
+      // filters: getCateOptions,
+      // filterMode: "tree",
+      // filterSearch: true,
+      // onFilter: (value, record) => record.Category?.name.startsWith(value),
     },
     {
       title: "Địa chỉ",
-      dataIndex: "address",
-      key: "address",
-      render: (_, { address }) => (
-        <>{address ? <p>{address}</p> : <p>Khác</p>}</>
+      dataIndex: "employerDetail",
+      key: "employerDetail",
+      render: (_, { employerDetail }) => (
+        <>{employerDetail ? <p>{employerDetail?.address}</p> : <p>Khác</p>}</>
       ),
-    },
-    {
-      title: "Kinh nghiệm",
-      dataIndex: "Experience",
-      key: "Experience",
-      render: (_, { Experience }) => (
-        <>{Experience ? <p>{Experience?.name}</p> : <p>Khác</p>}</>
-      ),
-    },
-    {
-      title: "Vị trí",
-      key: "Locations",
-      dataIndex: "Locations",
-      //   render: (_, { Locations }) => (
-      //     <>
-      //       {Locations.map((value) => {
-      //         return (
-      //           <Tag color="green" key={value.id}>
-      //             {value.name.length === 0 ? (
-      //               <p>abc</p>
-      //             ) : (
-      //               <p>{value?.name.toUpperCase()}</p>
-      //             )}
-      //           </Tag>
-      //         );
-      //       })}
-      //     </>
-      //   ),
     },
     {
       title: "Giới thiệu",
-      dataIndex: "description",
-      key: "description",
-      render: (_, { description }) => (
-        <>{description ? <p>{description}</p> : <p>Khác</p>}</>
+      dataIndex: "employerDetail",
+      key: "employerDetail",
+      render: (_, { employerDetail }) => (
+        <p className={styles.description}>
+          {employerDetail ? <p>{employerDetail?.description}</p> : <p>Khác</p>}
+        </p>
       ),
     },
     {
       title: "Ngày tạo",
-      dataIndex: "createdAt",
-      key: "createdAt",
-      render: (_, { createdAt }) => <p>{moment(createdAt).format("LLL")}</p>,
+      dataIndex: "employerDetail",
+      key: "employerDetail",
+      render: (_, { employerDetail }) => (
+        <>
+          {employerDetail ? (
+            <p>{moment(employerDetail?.createdAt).format("DD MMMM YYYY")}</p>
+          ) : (
+            <p>Khác</p>
+          )}
+        </>
+      ),
+    },
+    {
+      title: "Tình trạng",
+      dataIndex: "isActivate",
+      key: "isActivate",
+      render: (_, isActivate) => (
+        <Tag
+          style={{ width: "fit-content" }}
+          color={isActivate?.isActivate ? "green" : "red"}
+          key={isActivate}
+        >
+          <p>{isActivate?.isActivate ? "Đã xác thực" : "Chưa xác thực"}</p>
+        </Tag>
+      ),
     },
     {
       title: "Action",
-      key: "action",
-      render: (_, record) => (
+      key: "isActivate",
+      render: (_, { isActivate, id }) => (
         <Space size="middle">
           <Button
+            disabled={isActivate ? true : false}
             style={{
-              background: "#FF1E00",
-              color: "#fff",
+              background: isActivate ? "#E5E4E2" : "#82CD47",
+              color: isActivate ? "#818589		" : "#fff",
+              border: isActivate ? "1px solid #C0C0C0	" : "",
             }}
+            onClick={() => onClick(id, isActivate)}
           >
-            <DeleteOutlined />
+            {isActivate ? "Đã xác thực" : "Xác thực"}
           </Button>
         </Space>
       ),
@@ -91,8 +115,11 @@ const Employer = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await employerService.getAll(key);
-        setemployerList(data.data);
+        const { data } = await userService.getAll();
+        const employers = data?.data.filter(
+          (user) => user.isCandidate === false
+        );
+        setListOfUsers(employers);
       } catch (error) {
         openNotification("error", "Please try again!!!");
       }
@@ -100,11 +127,11 @@ const Employer = () => {
   }, [key]);
   return (
     <div className={styles.category}>
-      <SearchInput
+      {/* <SearchInput
         placeholder="Nhập tên nhà tuyển dụng..."
         onSearch={handleSearch}
-      />
-      <Table columns={columns} dataSource={employerList} />
+      /> */}
+      <Table columns={columns} dataSource={listOfUsers} />
     </div>
   );
 };

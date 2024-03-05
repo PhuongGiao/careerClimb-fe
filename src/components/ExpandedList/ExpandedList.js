@@ -14,8 +14,18 @@ const ExpandedList = ({ user, open, setOpen, setLoadingList }) => {
   const [loading, setLoading] = useState(false);
   const [cvSelected, setCvSelected] = useState({});
   const applyButton = (param) => {
+    console.log("🚀 ~ file: ExpandedList.js:17 ~ applyButton ~ param:", param);
+    //1 : Chưa trúng + chưa xem
+    //2 : Đã xem
+    //3 : Đã trúng tuyển + thông tin nhân viên
+    //4: Từ chối
+    //5: Đã gửi email
     switch (param?.status) {
-      case 1 && 2:
+      case null:
+        return "Ứng tuyển";
+      case 1:
+        return "Ứng tuyển";
+      case 2:
         return "Ứng tuyển";
       case 3:
         return "Đã trúng tuyển";
@@ -28,13 +38,13 @@ const ExpandedList = ({ user, open, setOpen, setLoadingList }) => {
   const sendMailButton = (param) => {
     switch (param?.status) {
       case 3:
-        return "Gửi mail";
+        return "Gửi mail ? ";
       case 5:
         return "Đã gửi mail";
       case 4:
         return "Đã từ chối";
       default:
-        return "Gửi mail";
+        return "Gửi mail ?";
     }
   };
   const showModal = async (applicationInfo) => {

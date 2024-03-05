@@ -22,6 +22,9 @@ export class UserService extends BaseService {
   getDetail = (id) => {
     return this.get(`/user/${id}`);
   };
+  verifyAccount = (id, data) => {
+    return this.patch(`/user/verify/${id}`, data);
+  };
 }
 
 export const userService = new UserService();

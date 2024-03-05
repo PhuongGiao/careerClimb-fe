@@ -1,14 +1,20 @@
 import { openNotification } from "@/components/Notification";
 import SearchInput from "@/components/SearchInput/SearchInput";
 import AdminLayout from "@/layout/admin";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Space, Table, Tag } from "antd";
 import { useEffect, useState } from "react";
 import { categoryService } from "../../../../services/categoryService";
 import styles from "./category.module.scss";
+import moment from "moment";
 const Category = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [key, setKey] = useState("");
+  const showModal = (job) => {
+    setIsOpen(true);
+    if (!job.id) return;
+    setJobSelected(job);
+  };
   const columns = [
     {
       title: "Tên",
@@ -18,10 +24,16 @@ const Category = () => {
     },
     {
       title: "Số lượng",
-      dataIndex: "amount",
-      key: "amount",
-      render: (_, { amount }) => (
-        <>{amount ? <p>{amount?.name}</p> : <p>Khác</p>}</>
+      dataIndex: "jobs",
+      key: "jobs",
+      render: (_, { jobs }) => (
+        <>
+          {jobs ? (
+            <p style={{ paddingLeft: "25px" }}>{jobs?.length}</p>
+          ) : (
+            <p>Khác</p>
+          )}
+        </>
       ),
     },
     {
@@ -29,7 +41,13 @@ const Category = () => {
       dataIndex: "createdAt",
       key: "createdAt",
       render: (_, { createdAt }) => (
-        <>{createdAt ? <p>{createdAt?.name}</p> : <p>Khác</p>}</>
+        <>
+          {createdAt ? (
+            <p>{moment(createdAt).format("DD MMMM YYYY")}</p>
+          ) : (
+            <p>Khác</p>
+          )}
+        </>
       ),
     },
 
@@ -38,7 +56,13 @@ const Category = () => {
       dataIndex: "updatedAt",
       key: "updatedAt",
       render: (_, { updatedAt }) => (
-        <>{updatedAt ? <p>{updatedAt?.name}</p> : <p>Khác</p>}</>
+        <>
+          {updatedAt ? (
+            <p>{moment(updatedAt).format("DD MMMM YYYY")}</p>
+          ) : (
+            <p>Khác</p>
+          )}
+        </>
       ),
     },
     {
@@ -81,12 +105,27 @@ const Category = () => {
   const handleSearch = (searchText) => {
     setKey(searchText);
   };
+  console.log(categoryList);
   return (
     <div className={styles.category}>
-      <SearchInput
+      <Button
+        style={{
+          background: "#82CD47",
+          color: "#fff",
+          padding: "20px ",
+          display: "flex",
+          alignItems: "center",
+          marginBottom: "20px",
+        }}
+        // onClick={showModal}
+      >
+        <PlusOutlined />
+        Tạo ngành nghề
+      </Button>
+      {/* <SearchInput
         placeholder="Nhập tên ngành nghề..."
         onSearch={handleSearch}
-      />
+      /> */}
       <Table columns={columns} dataSource={categoryList} />
     </div>
   );

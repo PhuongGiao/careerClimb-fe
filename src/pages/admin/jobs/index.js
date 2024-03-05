@@ -10,6 +10,7 @@ import { categoryService } from "../../../../services/categoryService";
 import { experienceService } from "../../../../services/experienceService";
 import { jobService } from "../../../../services/jobService";
 import { levelService } from "../../../../services/levelService";
+import { locationService } from "../../../../services/locationService";
 
 const Jobs = () => {
   const {
@@ -20,6 +21,7 @@ const Jobs = () => {
   const [getLevelOptions, setGetLevelOptions] = useState([]);
   const [getExpOptions, setGetExpOptions] = useState([]);
   const [getCateOptions, setGetCateOptions] = useState([]);
+  const [getLocationOptions, setgetLocationOptions] = useState([]);
   const [key, setKey] = useState("");
 
   const showModal = () => {
@@ -41,7 +43,7 @@ const Jobs = () => {
     {
       title: "Ngành nghề",
       dataIndex: "category",
-      key: "category",
+      key: "Category",
       render: (_, { Category }) => (
         <>{Category ? <p>{Category?.name}</p> : <p>Khác</p>}</>
       ),
@@ -50,6 +52,7 @@ const Jobs = () => {
       filterSearch: true,
       onFilter: (value, record) => record.Category?.name.startsWith(value),
     },
+
     {
       title: "Cấp bậc",
       dataIndex: "level",
@@ -60,7 +63,7 @@ const Jobs = () => {
       filters: getLevelOptions,
       filterMode: "tree",
       filterSearch: true,
-      onFilter: (value, record) => record.Level.name.startsWith(value),
+      onFilter: (value, record) => record.Level?.name.startsWith(value),
     },
     {
       title: "Kinh nghiệm",
@@ -72,12 +75,18 @@ const Jobs = () => {
       filters: getExpOptions,
       filterMode: "tree",
       filterSearch: true,
-      onFilter: (value, record) => record.Experience.name.startsWith(value),
+      onFilter: (value, record) => record.Experience?.name.startsWith(value),
     },
     {
       title: "Vị trí",
       key: "Locations",
       dataIndex: "Locations",
+      filters: getLocationOptions,
+      filterMode: "tree",
+      filterSearch: true,
+      onFilter: (value, record) => {
+        return record.Locations[0]?.name.startsWith(value);
+      },
       render: (_, { Locations }) => (
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {Locations.map((value) => {
@@ -144,11 +153,13 @@ const Jobs = () => {
           { data: levels },
           { data: exps },
           { data: categories },
+          { data: locations },
         ] = await Promise.all([
           jobService.getAll(key),
           levelService.getAll(),
           experienceService.getAll(),
           categoryService.getAll(),
+          locationService.getAll(),
         ]);
         setGetLevelOptions(
           levels.data.map((val) => ({
@@ -168,6 +179,12 @@ const Jobs = () => {
             value: val.name,
           }))
         );
+        setgetLocationOptions(
+          locations.data.map((val) => ({
+            text: val.name,
+            value: val.name,
+          }))
+        );
         setJobList(data.data);
       } catch (error) {
         openNotification("error", "Please try again!!!");
@@ -177,12 +194,13 @@ const Jobs = () => {
   const handleSearch = (searchText) => {
     setKey(searchText);
   };
+  console.log(jobList);
   return (
     <div>
-      <SearchInput
+      {/* <SearchInput
         placeholder="Nhập tên công việc..."
         onSearch={handleSearch}
-      />
+      /> */}
       <Table columns={columns} dataSource={jobList} />
       {isModalOpen && (
         <ModalEdit

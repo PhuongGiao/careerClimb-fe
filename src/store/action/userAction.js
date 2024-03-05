@@ -68,7 +68,6 @@ export const getCurrentUser = () => async (dispatch) => {
     dispatch({ type: SET_SAVED_LIST, payload: data.saved });
 
     dispatch({ type: SET_MY_CVS, payload: data.myCvs });
-    // console.log(data);
   } catch (error) {
     // router.push("/login-register");
     // localStorage.removeItem("token");

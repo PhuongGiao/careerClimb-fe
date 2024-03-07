@@ -35,7 +35,6 @@ const EmployerLayout = ({ children }) => {
   } = theme.useToken();
   const user = useSelector((state) => state.userReducer.user);
   const isActivate = user?.isActivate;
-  console.log("🚀 ~ EmployerLayout ~ isActivate:", isActivate);
   const router = useRouter();
   const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);

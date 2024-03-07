@@ -35,7 +35,6 @@ const UploadImage = ({
   // const [imgUrl, setImgUrl] = useState("");
   const [imageUrl, setImageUrl] = useState();
   const handleCancel = () => setPreviewOpen(false);
-  console.log(user);
   const onFinish = async (values) => {
     try {
       if (user?.isCandidate) {

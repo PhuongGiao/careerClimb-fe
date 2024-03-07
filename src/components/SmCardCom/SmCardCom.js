@@ -13,7 +13,6 @@ import { useRouter } from "next/router";
 import accImg from "./../../../public/accImg.jpeg";
 
 const SmCardCom = ({ data }) => {
-  console.log(data);
   const router = useRouter();
   return (
     <div className={styles.smCardCom}>

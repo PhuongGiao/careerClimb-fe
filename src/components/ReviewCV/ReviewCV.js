@@ -23,7 +23,7 @@ const ReviewCV = ({ open, appliedUser, setLoading, loading, setOpen }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [refuseModal, setRefuseModal] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false);
-  // console.log(appliedUser);
+
   const showModal = () => {
     setRefuseModal(true);
   };
@@ -54,7 +54,6 @@ const ReviewCV = ({ open, appliedUser, setLoading, loading, setOpen }) => {
     setRefuseModal(false);
   };
   const handleRefuse = async () => {
-    // console.log(appliedUser);
     try {
       await applicationService.refuse(appliedUser.id, appliedUser);
       openNotification("success", "Bạn đã từ chối ứng viên !");
@@ -64,13 +63,6 @@ const ReviewCV = ({ open, appliedUser, setLoading, loading, setOpen }) => {
       openNotification("error", "Something went wrong !!!");
     }
   };
-
-  // const onFinish = (values) => {
-  //   console.log("Success:", values);
-  // };
-  // const onFinishFailed = (errorInfo) => {
-  //   console.log("Failed:", errorInfo);
-  // };
 
   const showConfirm = () => {
     setOpenConfirm(true);

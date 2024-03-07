@@ -19,24 +19,6 @@ const EmployerDetail = () => {
   const [maxIndex, setMaxIndex] = useState(6);
   const [jobsByEmployer, setJobsByEmployer] = useState();
 
-  // useEffect(() => {
-  //   id &&
-  //     (async () => {
-  //       try {
-  //         const [{ data: employer }, { data: jobs }] = await Promise.all([
-  //           userService.getDetail(id),
-  //           jobService.getJobByEmployerPage(id),
-  //         ]);
-  //         console.log(employer.data);
-  //         setEmployer(employer.data);
-  //         setJobs(jobs.data);
-
-  //         // setJobsByEmployer(jobsByEmployer.data);
-  //       } catch (error) {
-  //         openNotification("error", error);
-  //       }
-  //     })();
-  // }, [id]);
   useEffect(() => {
     id &&
       (async () => {

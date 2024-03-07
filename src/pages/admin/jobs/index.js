@@ -194,7 +194,6 @@ const Jobs = () => {
   const handleSearch = (searchText) => {
     setKey(searchText);
   };
-  console.log(jobList);
   return (
     <div>
       {/* <SearchInput

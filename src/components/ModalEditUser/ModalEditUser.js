@@ -20,7 +20,6 @@ const ModalEditUser = ({ user, isOpenAcc, setisOpenAcc }) => {
     setisOpenAcc(false);
   };
   const onFinish = async (values) => {
-    // console.log(values);
     try {
       await userService.update(user.id, { ...values, image: imageUrl });
       openNotification("success", "Bạn đã cập nhập thông tin !!!");

@@ -105,7 +105,6 @@ const Category = () => {
   const handleSearch = (searchText) => {
     setKey(searchText);
   };
-  console.log(categoryList);
   return (
     <div className={styles.category}>
       <Button

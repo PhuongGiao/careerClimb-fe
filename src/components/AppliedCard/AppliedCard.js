@@ -35,7 +35,6 @@ const AppliedCard = ({ value }) => {
     setResultOpen(false);
   };
   const statusSwitch = (param) => {
-    console.log("🚀 ~ file: AppliedCard.js:38 ~ statusSwitch ~ param:", param);
     switch (param?.status) {
       case 2:
         // return "Đã xem";

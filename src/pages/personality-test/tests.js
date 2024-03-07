@@ -31,7 +31,6 @@ const Tests = () => {
     try {
       const data = await mbtiService.create(result);
       setResult(data.data);
-      console.log(data.data?.mbti?.id);
       router.push(`${data.data?.mbti?.id}`);
     } catch (error) {
       message.error("Something went wrong!!");
@@ -49,7 +48,7 @@ const Tests = () => {
         </div>
         <Form form={form} onFinish={onFinish} layout="vertical">
           {questions.map((val) => (
-            <div>
+            <div key={val}>
               <Form.Item
                 key={val.id}
                 label={val.title}

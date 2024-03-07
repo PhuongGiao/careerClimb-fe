@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./pageNotFound.module.scss";
 import { Col, Row } from "antd";
+import Link from "next/link";
 
 const PageNotFound = () => {
   return (
@@ -19,13 +20,12 @@ const PageNotFound = () => {
               </div>
 
               <div className={styles.contant_box_404}>
-                <h3 className={styles.h2}>Look like you're lost</h3>
+                <h3 className={styles.h2}>Look like you&apos;re lost</h3>
 
                 <p>the page you are looking for not avaible!</p>
-
-                <a href="/" className={styles.link_404}>
+                <Link href="/" className={styles.link_404}>
                   Go to Home
-                </a>
+                </Link>
               </div>
             </div>
           </Col>

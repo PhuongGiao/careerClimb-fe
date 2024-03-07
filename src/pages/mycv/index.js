@@ -39,12 +39,7 @@ const Mycv = () => {
   const handleCancel = () => {
     setOpen(false);
   };
-  // const onFinish = (values) => {
-  //   console.log("Success:", values);
-  // };
-  // const onFinishFailed = (errorInfo) => {
-  //   console.log("Failed:", errorInfo);
-  // };
+
   const handleChange = (value) => {
     setMinValue((value - 1) * numEachPage);
     setMaxValue(value * numEachPage);

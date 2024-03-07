@@ -39,9 +39,7 @@ export const googleSignIn = () => async (dispatch) => {
     dispatch({ type: SET_SAVED_LIST, payload: data.saved });
 
     dispatch({ type: SET_MY_CVS, payload: data.myCvs });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
   dispatch({ type: SET_LOADING, payload: false });
 };
 export const facebookSignIn = () => async (dispatch) => {

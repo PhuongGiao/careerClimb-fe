@@ -14,7 +14,6 @@ const ExpandedList = ({ user, open, setOpen, setLoadingList }) => {
   const [loading, setLoading] = useState(false);
   const [cvSelected, setCvSelected] = useState({});
   const applyButton = (param) => {
-    console.log("🚀 ~ file: ExpandedList.js:17 ~ applyButton ~ param:", param);
     //1 : Chưa trúng + chưa xem
     //2 : Đã xem
     //3 : Đã trúng tuyển + thông tin nhân viên

@@ -29,8 +29,6 @@ const Result = () => {
           setResult(mbti);
           setCategory(jobs);
         } catch (error) {
-          console.log("🚀 ~ file: [id].js:32 ~ error:", error);
-
           if (error.response.status === 404 || 401) {
             router.push("/page-not-found");
             // openNotification("error", "Page Not Found!!!");
@@ -49,10 +47,6 @@ const Result = () => {
     }
     return val.role === infoPersonality?.role;
   });
-  console.log(
-    "🚀 ~ file: [id].js:51 ~ otherTypes ~ infoPersonality:",
-    category
-  );
 
   return (
     <>
@@ -83,7 +77,7 @@ const Result = () => {
                 <h2>Strengths</h2>
               </Divider>
               {infoPersonality?.strengths?.map((value) => (
-                <ol className={styles.circle}>
+                <ol className={styles.circle} key={value}>
                   <li>{value}</li>
                 </ol>
                 // <p>{infoPersonality?.strengths}</p>
@@ -94,7 +88,7 @@ const Result = () => {
                 <h2>Weaknesses</h2>
               </Divider>
               {infoPersonality?.weaknesses?.map((value) => (
-                <ol className={styles.circle}>
+                <ol className={styles.circle} key={value}>
                   <li>{value}</li>
                 </ol>
                 // <p>{infoPersonality?.strengths}</p>
@@ -118,7 +112,7 @@ const Result = () => {
                 <h2>Hobbies</h2>
               </Divider>
               {infoPersonality?.hobbies_interests?.map((value) => (
-                <ol className={styles.circle}>
+                <ol className={styles.circle} key={value}>
                   <li>{value}</li>
                 </ol>
                 // <p>{infoPersonality?.strengths}</p>

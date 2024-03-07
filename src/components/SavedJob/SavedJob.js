@@ -30,7 +30,7 @@ const SavedJob = () => {
         // <div>
         <Row gutter={[25, 25]}>
           {savedJobList?.map((item) => (
-            <Col span={8}>
+            <Col span={8} key={item.id}>
               <Card
                 value={item.Job}
                 key={item.id}

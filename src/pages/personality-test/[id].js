@@ -163,7 +163,7 @@ const Result = () => {
           </Col>
         </Row>
         <Divider />
-        <div className={styles.recommendJob}>
+        {/* <div className={styles.recommendJob}>
           <p>
             <StarFilled style={{ color: "#ffd800", paddingBottom: "25px" }} />{" "}
             {category?.name}
@@ -188,7 +188,7 @@ const Result = () => {
                 </Col>
               ))}
           </Row>
-        </div>
+        </div> */}
       </div>
     </>
   );

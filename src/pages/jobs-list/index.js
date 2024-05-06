@@ -1,4 +1,5 @@
 import Card from "@/components/Card/Card";
+import Loading from "@/components/Loading/Loading";
 import { openNotification } from "@/components/Notification";
 import SearchFilter from "@/components/SearchFilter/SearchFilter";
 import SearchInput from "@/components/SearchInput/SearchInput";
@@ -7,34 +8,22 @@ import MainLayout from "@/layout/main";
 import { SearchOutlined } from "@ant-design/icons";
 import { Col, Pagination, Row, theme } from "antd";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import qs from "query-string";
+import { useEffect, useMemo, useState } from "react";
 import { jobService } from "../../../services/jobService";
 import styles from "./jobsList.module.scss";
-import { useSearchParams } from "next/navigation";
-import qs from "query-string";
-import useSearch from "@/components/hooks/useSearch";
-import Loading from "@/components/Loading/Loading";
 
 const pageSize = 6;
 
 const JobsList = () => {
   const router = useRouter();
-  const params = useSearchParams();
-  // const { name, level, position, category } = router?.query;
-
-  const { data: jobs, loading } = useSearch(qs.parse(params.toString()));
-
   const [current, setCurrent] = useState(1);
   const [minIndex, setMinIndex] = useState(0);
   const [maxIndex, setMaxIndex] = useState(6);
-  const [key, setKey] = useState({
-    name: "",
-    level: [],
-    experience: [],
-    salary: [],
-    category: [],
-    location: [],
-  });
+  const [loading, setLoading] = useState(false);
+  const [jobs, setData] = useState([]);
+  const { query: params } = useRouter();
+
   const {
     token: { colorPrimary },
   } = theme.useToken();
@@ -61,10 +50,44 @@ const JobsList = () => {
         skipNull: true,
       }
     );
-
     router.push(url);
   };
   const search = qs.parse(params.toString())?.searchText;
+
+  const getListJob = async (params) => {
+    const { data } = await jobService.getAll(params);
+    return data.data;
+  };
+
+  useEffect(() => {
+    if (params) {
+      setLoading(true);
+      (async () => {
+        try {
+          const data = await getListJob(params);
+          console.log("🚀 ~ data:", data);
+          setData(data);
+        } catch (error) {
+          openNotification("error", "Please try again!!!");
+        } finally {
+          setLoading(false);
+        }
+      })();
+    }
+  }, [params]);
+  useEffect(() => {
+    setLoading(true);
+    (async () => {
+      try {
+        const data = await getListJob(params);
+        setData(data);
+      } catch (error) {
+        openNotification("error", "Please try again!!!");
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
 
   return (
     <div className={styles.jobsList}>

@@ -153,6 +153,7 @@ const SmSearch = ({ setKey, key }) => {
           title="Loại công việc"
         >
           <Checkbox.Group
+            key="checkbox1"
             defaultValue={qs.parse(params.toString())["level"]}
             style={{
               width: "100%",
@@ -162,8 +163,8 @@ const SmSearch = ({ setKey, key }) => {
             onChange={onChangeLevel}
             // defaultValue={JSON.parse(router?.query?.level)}
           >
-            {options?.levels?.map((value) => (
-              <Menu.Item key={value.id}>
+            {options?.levels?.map((value, idx) => (
+              <Menu.Item key={idx}>
                 <Checkbox value={value.id}>{value.name}</Checkbox>
               </Menu.Item>
             ))}
@@ -185,8 +186,8 @@ const SmSearch = ({ setKey, key }) => {
             }}
             onChange={onChangeExp}
           >
-            {options?.experiences?.map((value) => (
-              <Menu.Item key={value.id}>
+            {options?.experiences?.map((value, idx) => (
+              <Menu.Item key={idx}>
                 <Checkbox value={value.id}>{value.name}</Checkbox>
               </Menu.Item>
             ))}
@@ -208,8 +209,8 @@ const SmSearch = ({ setKey, key }) => {
             }}
             onChange={onChangeLocation}
           >
-            {options?.locations?.map((value) => (
-              <Menu.Item key={value.id}>
+            {options?.locations?.map((value, idx) => (
+              <Menu.Item key={idx}>
                 <Checkbox value={value.id}>{value.name}</Checkbox>
               </Menu.Item>
             ))}
@@ -231,8 +232,8 @@ const SmSearch = ({ setKey, key }) => {
             }}
             onChange={onChangeCate}
           >
-            {options?.categories?.map((value) => (
-              <Menu.Item key={value.id}>
+            {options?.categories?.map((value, idx) => (
+              <Menu.Item key={idx}>
                 <Checkbox value={value.id}>{value.name}</Checkbox>
               </Menu.Item>
             ))}
@@ -254,8 +255,8 @@ const SmSearch = ({ setKey, key }) => {
             }}
             onChange={onChangeSalary}
           >
-            {options?.salaries?.map((value) => (
-              <Menu.Item key={value.id}>
+            {options?.salaries?.map((value, idx) => (
+              <Menu.Item key={idx}>
                 <Checkbox value={value.id}>{value.name}</Checkbox>
               </Menu.Item>
             ))}

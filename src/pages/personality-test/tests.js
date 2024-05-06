@@ -31,12 +31,15 @@ const Tests = () => {
     try {
       const data = await mbtiService.create(result);
       setResult(data.data);
+      console.log("🚀 ~ onFinish ~ data.data:", data.data);
       router.push(`${data.data?.mbti?.id}`);
     } catch (error) {
+      console.log("🚀 ~ onFinish ~ error:", error);
       message.error("Something went wrong!!");
     }
     setlistTests(values);
   };
+
   return (
     <div className={styles.tests}>
       <div className={styles.container}>
@@ -47,10 +50,10 @@ const Tests = () => {
           </span>
         </div>
         <Form form={form} onFinish={onFinish} layout="vertical">
-          {questions.map((val) => (
+          {questions.map((val, idx) => (
             <div key={val}>
               <Form.Item
-                key={val.id}
+                key={idx}
                 label={val.title}
                 name={val.name}
                 style={{

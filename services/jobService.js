@@ -1,7 +1,7 @@
 import { BaseService } from "./baseService";
 
 export class JobService extends BaseService {
-  getAll = (params) => {
+  getAll = (params = "") => {
     return this.get(`/job`, {
       ...params,
     });
